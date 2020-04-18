@@ -39,11 +39,31 @@ namespace Cyfrowe.Logic
             CzestotliwoscProbkowania = 100;
             PointList = new List<Point>();
             for (double i = CzasPoczatkowy; i <= CzasPoczatkowy + CzasTrwaniaSygnalu; i += 1 / CzestotliwoscProbkowania)
-                PointList.Add(new Point(i, ValueAtTime(-5,5)));
-           
+                PointList.Add(new Point(i, ValueAtTime(-5,5)));          
         }
 
+        public double CalculateWartoscSrednia()
+        {
 
+            return 0;
+        }
+
+        public double CalculateSredniaWartoscBezwzgledna()
+        {
+            return 0;
+        }
+        public double CalculateWartoscSkuteczna()
+        {
+            return 0;
+        }
+        public double CalculateWariacje()
+        {
+            return 0;
+        }
+        public double CalculateMocSkuteczna()
+        {
+            return 0;
+        }
 
 
     }
