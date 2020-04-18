@@ -31,12 +31,12 @@ namespace Cyfrowe
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -286,7 +286,31 @@ namespace Cyfrowe
             // 
             // SignalSelect
             // 
-            this.SignalSelect.FormattingEnabled = true;
+            this.SignalSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
+            this.SignalSelect.AutoCompleteCustomSource.AddRange(new string[] {
+            "Szum o rozkładzie jednostajnym",
+            "Szum gaussowski",
+            "Sygnał sinusoidalny",
+            "Sygnał sinosoidalny wyprostowany jednopołówkowo",
+            "Sygnał sinusoidalny wyprostowany dwupołówkowo",
+            "Sygnał prostokątny",
+            "Sygnał symetryczny",
+            "Sygnał trójkątny",
+            "Skok jednostkowy",
+            "Impuls jednostkowy",
+            "Szum impulsowy"});
+            this.SignalSelect.Items.AddRange(new object[] {
+            "Szum o rozkładzie jednostajnym",
+            "Szum gaussowski",
+            "Sygnał sinusoidalny",
+            "Sygnał sinosoidalny wyprostowany jednopołówkowo",
+            "Sygnał sinusoidalny wyprostowany dwupołówkowo",
+            "Sygnał prostokątny",
+            "Sygnał symetryczny",
+            "Sygnał trójkątny",
+            "Skok jednostkowy",
+            "Impuls jednostkowy",
+            "Szum impulsowy"});
             this.SignalSelect.Location = new System.Drawing.Point(5, 3);
             this.SignalSelect.Name = "SignalSelect";
             this.SignalSelect.Size = new System.Drawing.Size(259, 21);
@@ -313,32 +337,32 @@ namespace Cyfrowe
             // 
             // Plot
             // 
-            chartArea1.Name = "ChartArea1";
-            this.Plot.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.Plot.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.Plot.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.Plot.Legends.Add(legend3);
             this.Plot.Location = new System.Drawing.Point(3, 3);
             this.Plot.Name = "Plot";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.Plot.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.Plot.Series.Add(series3);
             this.Plot.Size = new System.Drawing.Size(522, 274);
             this.Plot.TabIndex = 0;
             this.Plot.Text = "chart1";
             // 
             // Histogram
             // 
-            chartArea2.Name = "ChartArea1";
-            this.Histogram.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.Histogram.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.Histogram.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.Histogram.Legends.Add(legend4);
             this.Histogram.Location = new System.Drawing.Point(2, 1);
             this.Histogram.Name = "Histogram";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.Histogram.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.Histogram.Series.Add(series4);
             this.Histogram.Size = new System.Drawing.Size(526, 304);
             this.Histogram.TabIndex = 0;
             this.Histogram.Text = "chart2";

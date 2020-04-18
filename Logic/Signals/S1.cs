@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using static Cyfrowe.Logic.SignalTypes;
 
 namespace Cyfrowe.Logic.Signals
 {
@@ -14,7 +14,7 @@ namespace Cyfrowe.Logic.Signals
         public S1()
         {
             Nazwa = "Szum o rozkladzie jednostajnym";
-            CzyCiagly = true;
+            Rodzaj = Types.Ciagly;
            
         }
 

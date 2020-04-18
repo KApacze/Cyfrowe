@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Numerics;
 using System.Threading.Tasks;
+using static Cyfrowe.Logic.SignalTypes;
 
 namespace Cyfrowe.Logic
 {
+    //public enum Types { Ciagly, Dyskretny }
     abstract class Signal
     {
         public string Nazwa { get; set; }
@@ -17,17 +19,15 @@ namespace Cyfrowe.Logic
         public double WspolczynnikWypelnienia { get; set; }
         public double PoczatekSygnalu { get; set; }
         public double CzestotliwoscProbkowania { get; set; }
+        public Types Rodzaj;
 
         public List<Point> PointList { get; set; }
 
 
-      
-
-        public bool CzyCiagly { get; set; }
-        public bool CzyDyskretny { get; set; }
+     
         protected abstract double ValueAtTime(double Amax, double Amin);
 
-        public Signal()
+        public Signal() 
         {
             //Amplituda = 5.0;
             CzasPoczatkowy = 0.0;
@@ -44,27 +44,76 @@ namespace Cyfrowe.Logic
 
         public double CalculateWartoscSrednia()
         {
-
-            return 0;
+            double sum = 0;
+            foreach (Point point in PointList)
+                sum += point.Y;
+            double average;
+            if(Rodzaj.Equals(Types.Ciagly))
+            {
+                average = (double) 1.0 / (PointList[PointList.Count - 1].X * CzestotliwoscProbkowania
+                          - PointList[0].X * CzestotliwoscProbkowania + 1) * sum;
+            } else
+            {
+                average = (double)1.0 / (PointList[PointList.Count - 1].X - PointList[0].X + 1) * sum;
+            }
+            return average;
         }
 
         public double CalculateSredniaWartoscBezwzgledna()
         {
-            return 0;
+
+            double sum = 0;
+            foreach (Point point in PointList)
+                sum += Math.Abs(point.Y);
+            double average;
+            if (Rodzaj.Equals(Types.Ciagly)) { 
+                average =  1.0 / (PointList[PointList.Count - 1].X * CzestotliwoscProbkowania - PointList[0].X * CzestotliwoscProbkowania + 1) * sum;
+            } else 
+                     average = 1.0 / (PointList[PointList.Count - 1].X - PointList[0].X + 1) * sum; ;
+
+            return average;
         }
-        public double CalculateWartoscSkuteczna()
-        {
-            return 0;
-        }
+       
         public double CalculateWariacje()
         {
-            return 0;
-        }
-        public double CalculateMocSkuteczna()
-        {
-            return 0;
+            double sum = 0;
+            double averageValue = CalculateWartoscSrednia();
+            double variance;
+            foreach (Point point in PointList)
+                sum += (point.Y - averageValue) * (point.Y - averageValue);
+
+            if (Rodzaj.Equals(Types.Ciagly))
+            {
+                variance = 1.0 / (PointList[PointList.Count - 1].X * CzestotliwoscProbkowania
+                              - PointList[0].X * CzestotliwoscProbkowania + 1) * sum;
+            } else
+                 variance =  1.0 / (PointList[PointList.Count - 1].X - PointList[0].X + 1) * sum;
+            return variance;
         }
 
+        public double CalculateMocSrednia()
+        {
+            double sum = 0;
+            foreach (Point point in PointList)
+                sum += point.Y * point.Y;
+            double average;
+            if (Rodzaj.Equals(Types.Ciagly))
+            {
+                average = 1.0 / (PointList[PointList.Count - 1].X * CzestotliwoscProbkowania - PointList[0].X * CzestotliwoscProbkowania + 1) * sum;
+            }
+            else
+                average = 1.0 / (PointList[PointList.Count - 1].X - PointList[0].X + 1) * sum;
+
+            return average;
+        }
+     
+
+        public double CalculateWartoscSkuteczna()
+        {
+            double average = CalculateMocSrednia();
+
+            return Math.Sqrt(average);
+        }
 
     }
 }
