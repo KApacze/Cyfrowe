@@ -15,8 +15,24 @@ using Point = Cyfrowe.Logic.Point;
 
 namespace Cyfrowe
 {
+    
     public partial class CPS : Form
     {
+        private List<Signal> AllSignals =
+             new List<Signal>
+             {
+                new S1(),
+                new S2(),
+                new S3(),
+                new S4(),
+                new S5(),
+                new S6(),
+                new S7(),
+                new S8(),
+                new S9()
+
+             };
+        private Signal CurrentSignal;
         public CPS()
         {
             InitializeComponent();
@@ -24,15 +40,69 @@ namespace Cyfrowe
 
         private void SignalSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
+            CurrentSignal = AllSignals[SignalSelect.SelectedIndex];
+            
+            if(CurrentSignal.CzyCzestotliwosc == true)
+            {
+                this.CzestotliwoscInput.Enabled = true;
+            } else 
+                this.CzestotliwoscInput.Enabled = false;
+
+            if (CurrentSignal.CzyAmplituda == true)
+            {
+                this.AmplitudaInput.Enabled = true;
+            }
+            else
+                this.AmplitudaInput.Enabled = false;
+
+            if (CurrentSignal.CzyczasPoczatkowy == true)
+            {
+                this.CzasPoczatkowyInput.Enabled = true;
+            }
+            else
+                this.CzasPoczatkowyInput.Enabled = false;
+
+            if (CurrentSignal.CzyCzasTrwaniaSygnalu == true)
+            {
+                this.CzasTrwaniaSygnaluInput.Enabled = true;
+            }
+            else
+                this.CzasTrwaniaSygnaluInput.Enabled = false;
+
+            if (CurrentSignal.CzyOkresSygnalu == true)
+            {
+                this.OkresSygnaluInput.Enabled = true;
+            }
+            else
+                this.OkresSygnaluInput.Enabled = false;
+
+            if (CurrentSignal.CzySkokCzasowy == true)
+            {
+                this.SkokCzasowyInput.Enabled = true;
+            }
+            else
+                this.SkokCzasowyInput.Enabled = false;
+
+            if (CurrentSignal.CzyWspolczynnikWypelnienia == true)
+            {
+                this.WspolczynnikWypelnieniaInput.Enabled = true;
+            }
+            else
+                this.WspolczynnikWypelnieniaInput.Enabled = false;
+
+
+            //TODO implememt the rest
 
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            Signal signal;
+            SetVariables(CurrentSignal);
+            Signal signal = CurrentSignal;
+            
             if (SignalSelect.SelectedIndex == 0)
             {
-                signal = new S2();
+                
                 //  this.HistogramInput.Text = "5";
 
                 //  this.SkokCzasowyInput.Text = signal.;
@@ -114,8 +184,56 @@ namespace Cyfrowe
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
+        { 
 
+        }
+
+
+        private void SetVariables(Signal signal)
+        {
+            if (this.AmplitudaInput.Enabled == true) {
+                double A = Double.Parse(this.AmplitudaInput.Text.ToString());
+                signal.Amplituda = A;
+            }
+            if (this.CzestotliwoscInput.Enabled == true)
+            {
+                double f = Double.Parse(this.CzestotliwoscInput.Text.ToString());
+                signal.CzestotliwoscProbkowania = f;
+            }
+            if (this.CzasPoczatkowyInput.Enabled == true)
+            {
+                double t1 = Double.Parse(this.CzasPoczatkowyInput.Text.ToString());
+                signal.CzasPoczatkowy = t1;
+            }
+            if (this.CzasTrwaniaSygnaluInput.Enabled == true)
+            {
+                double d = Double.Parse(this.CzasTrwaniaSygnaluInput.Text.ToString());
+                signal.CzasTrwaniaSygnalu = d;
+            }
+            if (this.OkresSygnaluInput.Enabled == true)
+            {
+                double T = Double.Parse(this.OkresSygnaluInput.Text.ToString());
+                signal.OkresPodstawowy = T;
+
+                       }
+            if (this.SkokCzasowyInput.Enabled == true)
+            {
+                double ts = Double.Parse(this.SkokCzasowyInput.Text.ToString());
+                signal.SkokCzasowy = ts;
+
+            }
+            if (this.WspolczynnikWypelnieniaInput.Enabled == true)
+            {
+                double kw = Double.Parse(this.WspolczynnikWypelnieniaInput.Text.ToString());
+
+                signal.WspolczynnikWypelnienia = kw;
+
+            }
+
+            signal.GenerateSignal();
+
+
+               
         }
     }
         

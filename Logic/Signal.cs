@@ -47,13 +47,17 @@ namespace Cyfrowe.Logic
             SkokCzasowy = 2.0;
             WspolczynnikWypelnienia = 1.0;
             PoczatekSygnalu = 0.0;
-           // OkresPodstawowy = 2.0;
+            OkresPodstawowy = 2.0;
             CzestotliwoscProbkowania = 100;
+
+            GenerateSignal();    
+        }
+        public void GenerateSignal()
+        {
             PointList = new List<Point>();
             for (double i = CzasPoczatkowy; i <= CzasPoczatkowy + CzasTrwaniaSygnalu; i += 1 / CzestotliwoscProbkowania)
-                PointList.Add(new Point(i, ValueAtTime(i)));          
+                PointList.Add(new Point(i, ValueAtTime(i)));
         }
-
         public double CalculateWartoscSrednia()
         {
             double sum = 0;
