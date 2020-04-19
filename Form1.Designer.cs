@@ -31,18 +31,18 @@ namespace Cyfrowe
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.Data = new System.Windows.Forms.SplitContainer();
+            this.HistogramSelect = new System.Windows.Forms.ComboBox();
+            this.HistogramInput = new System.Windows.Forms.Label();
             this.CreateButton = new System.Windows.Forms.Button();
             this.SkokCzasowyInput = new System.Windows.Forms.TextBox();
             this.SkokCzasowy = new System.Windows.Forms.Label();
@@ -57,21 +57,19 @@ namespace Cyfrowe
             this.CzestotliwoscInput = new System.Windows.Forms.TextBox();
             this.Czestotliwosc = new System.Windows.Forms.Label();
             this.SignalSelect = new System.Windows.Forms.ComboBox();
+            this.MocSredniaOutput = new System.Windows.Forms.Label();
+            this.WariacjaOutput = new System.Windows.Forms.Label();
+            this.WartoscSkutecznaOutput = new System.Windows.Forms.Label();
+            this.WartoscSredniaBezwzglednaOutpu = new System.Windows.Forms.Label();
+            this.WartoscSredniaOutput = new System.Windows.Forms.Label();
+            this.MocSrednia = new System.Windows.Forms.Label();
+            this.Wariacja = new System.Windows.Forms.Label();
+            this.WartoscSkuteczna = new System.Windows.Forms.Label();
+            this.WartoscSredniaBezwzgledna = new System.Windows.Forms.Label();
+            this.WartoscSrednia = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.Plot = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.HistogramInput = new System.Windows.Forms.Label();
-            this.HistogramSelect = new System.Windows.Forms.ComboBox();
-            this.WartoscSrednia = new System.Windows.Forms.Label();
-            this.WartoscSredniaBezwzgledna = new System.Windows.Forms.Label();
-            this.WartoscSkuteczna = new System.Windows.Forms.Label();
-            this.Wariacja = new System.Windows.Forms.Label();
-            this.MocSrednia = new System.Windows.Forms.Label();
-            this.WartoscSredniaOutput = new System.Windows.Forms.Label();
-            this.WartoscSredniaBezwzglednaOutpu = new System.Windows.Forms.Label();
-            this.WartoscSkutecznaOutput = new System.Windows.Forms.Label();
-            this.WariacjaOutput = new System.Windows.Forms.Label();
-            this.MocSredniaOutput = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -179,6 +177,29 @@ namespace Cyfrowe
             this.Data.SplitterDistance = 277;
             this.Data.TabIndex = 0;
             // 
+            // HistogramSelect
+            // 
+            this.HistogramSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.HistogramSelect.FormattingEnabled = true;
+            this.HistogramSelect.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "15",
+            "20"});
+            this.HistogramSelect.Location = new System.Drawing.Point(145, 208);
+            this.HistogramSelect.Name = "HistogramSelect";
+            this.HistogramSelect.Size = new System.Drawing.Size(51, 21);
+            this.HistogramSelect.TabIndex = 15;
+            // 
+            // HistogramInput
+            // 
+            this.HistogramInput.AutoSize = true;
+            this.HistogramInput.Location = new System.Drawing.Point(2, 211);
+            this.HistogramInput.Name = "HistogramInput";
+            this.HistogramInput.Size = new System.Drawing.Size(143, 13);
+            this.HistogramInput.TabIndex = 14;
+            this.HistogramInput.Text = "Ilość przedziałów histogramu";
+            // 
             // CreateButton
             // 
             this.CreateButton.Location = new System.Drawing.Point(98, 235);
@@ -187,6 +208,7 @@ namespace Cyfrowe
             this.CreateButton.TabIndex = 13;
             this.CreateButton.Text = "Stworz";
             this.CreateButton.UseVisualStyleBackColor = true;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // SkokCzasowyInput
             // 
@@ -299,6 +321,7 @@ namespace Cyfrowe
             "Skok jednostkowy",
             "Impuls jednostkowy",
             "Szum impulsowy"});
+            this.SignalSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SignalSelect.Items.AddRange(new object[] {
             "Szum o rozkładzie jednostajnym",
             "Szum gaussowski",
@@ -315,6 +338,97 @@ namespace Cyfrowe
             this.SignalSelect.Name = "SignalSelect";
             this.SignalSelect.Size = new System.Drawing.Size(259, 21);
             this.SignalSelect.TabIndex = 0;
+            this.SignalSelect.SelectedIndexChanged += new System.EventHandler(this.SignalSelect_SelectedIndexChanged);
+            // 
+            // MocSredniaOutput
+            // 
+            this.MocSredniaOutput.AutoSize = true;
+            this.MocSredniaOutput.Location = new System.Drawing.Point(79, 115);
+            this.MocSredniaOutput.Name = "MocSredniaOutput";
+            this.MocSredniaOutput.Size = new System.Drawing.Size(35, 13);
+            this.MocSredniaOutput.TabIndex = 9;
+            this.MocSredniaOutput.Text = "label5";
+            // 
+            // WariacjaOutput
+            // 
+            this.WariacjaOutput.AutoSize = true;
+            this.WariacjaOutput.Location = new System.Drawing.Point(63, 92);
+            this.WariacjaOutput.Name = "WariacjaOutput";
+            this.WariacjaOutput.Size = new System.Drawing.Size(35, 13);
+            this.WariacjaOutput.TabIndex = 8;
+            this.WariacjaOutput.Text = "label4";
+            // 
+            // WartoscSkutecznaOutput
+            // 
+            this.WartoscSkutecznaOutput.AutoSize = true;
+            this.WartoscSkutecznaOutput.Location = new System.Drawing.Point(113, 68);
+            this.WartoscSkutecznaOutput.Name = "WartoscSkutecznaOutput";
+            this.WartoscSkutecznaOutput.Size = new System.Drawing.Size(35, 13);
+            this.WartoscSkutecznaOutput.TabIndex = 7;
+            this.WartoscSkutecznaOutput.Text = "label3";
+            // 
+            // WartoscSredniaBezwzglednaOutpu
+            // 
+            this.WartoscSredniaBezwzglednaOutpu.AutoSize = true;
+            this.WartoscSredniaBezwzglednaOutpu.Location = new System.Drawing.Point(163, 44);
+            this.WartoscSredniaBezwzglednaOutpu.Name = "WartoscSredniaBezwzglednaOutpu";
+            this.WartoscSredniaBezwzglednaOutpu.Size = new System.Drawing.Size(35, 13);
+            this.WartoscSredniaBezwzglednaOutpu.TabIndex = 6;
+            this.WartoscSredniaBezwzglednaOutpu.Text = "label2";
+            // 
+            // WartoscSredniaOutput
+            // 
+            this.WartoscSredniaOutput.AutoSize = true;
+            this.WartoscSredniaOutput.Location = new System.Drawing.Point(98, 21);
+            this.WartoscSredniaOutput.Name = "WartoscSredniaOutput";
+            this.WartoscSredniaOutput.Size = new System.Drawing.Size(35, 13);
+            this.WartoscSredniaOutput.TabIndex = 5;
+            this.WartoscSredniaOutput.Text = "label1";
+            // 
+            // MocSrednia
+            // 
+            this.MocSrednia.AutoSize = true;
+            this.MocSrednia.Location = new System.Drawing.Point(8, 115);
+            this.MocSrednia.Name = "MocSrednia";
+            this.MocSrednia.Size = new System.Drawing.Size(65, 13);
+            this.MocSrednia.TabIndex = 4;
+            this.MocSrednia.Text = "Moc średnia";
+            // 
+            // Wariacja
+            // 
+            this.Wariacja.AutoSize = true;
+            this.Wariacja.Location = new System.Drawing.Point(8, 92);
+            this.Wariacja.Name = "Wariacja";
+            this.Wariacja.Size = new System.Drawing.Size(49, 13);
+            this.Wariacja.TabIndex = 3;
+            this.Wariacja.Text = "Wariacja";
+            // 
+            // WartoscSkuteczna
+            // 
+            this.WartoscSkuteczna.AutoSize = true;
+            this.WartoscSkuteczna.Location = new System.Drawing.Point(8, 68);
+            this.WartoscSkuteczna.Name = "WartoscSkuteczna";
+            this.WartoscSkuteczna.Size = new System.Drawing.Size(99, 13);
+            this.WartoscSkuteczna.TabIndex = 2;
+            this.WartoscSkuteczna.Text = "Wartość skuteczna";
+            // 
+            // WartoscSredniaBezwzgledna
+            // 
+            this.WartoscSredniaBezwzgledna.AutoSize = true;
+            this.WartoscSredniaBezwzgledna.Location = new System.Drawing.Point(8, 44);
+            this.WartoscSredniaBezwzgledna.Name = "WartoscSredniaBezwzgledna";
+            this.WartoscSredniaBezwzgledna.Size = new System.Drawing.Size(149, 13);
+            this.WartoscSredniaBezwzgledna.TabIndex = 1;
+            this.WartoscSredniaBezwzgledna.Text = "Wartość średnia bezwzględna";
+            // 
+            // WartoscSrednia
+            // 
+            this.WartoscSrednia.AutoSize = true;
+            this.WartoscSrednia.Location = new System.Drawing.Point(8, 21);
+            this.WartoscSrednia.Name = "WartoscSrednia";
+            this.WartoscSrednia.Size = new System.Drawing.Size(84, 13);
+            this.WartoscSrednia.TabIndex = 0;
+            this.WartoscSrednia.Text = "Wartość średnia";
             // 
             // splitContainer2
             // 
@@ -337,143 +451,32 @@ namespace Cyfrowe
             // 
             // Plot
             // 
-            chartArea3.Name = "ChartArea1";
-            this.Plot.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.Plot.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.Plot.ChartAreas.Add(chartArea1);
             this.Plot.Location = new System.Drawing.Point(3, 3);
             this.Plot.Name = "Plot";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.Plot.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.Plot.Series.Add(series1);
             this.Plot.Size = new System.Drawing.Size(522, 274);
             this.Plot.TabIndex = 0;
-            this.Plot.Text = "chart1";
+            this.Plot.Text = " ";
+            this.Plot.Click += new System.EventHandler(this.Plot_Click);
             // 
             // Histogram
             // 
-            chartArea4.Name = "ChartArea1";
-            this.Histogram.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.Histogram.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            this.Histogram.ChartAreas.Add(chartArea2);
             this.Histogram.Location = new System.Drawing.Point(2, 1);
+            this.Histogram.Margin = new System.Windows.Forms.Padding(0);
             this.Histogram.Name = "Histogram";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.Histogram.Series.Add(series4);
+            this.Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "Series1";
+            this.Histogram.Series.Add(series2);
             this.Histogram.Size = new System.Drawing.Size(526, 304);
             this.Histogram.TabIndex = 0;
             this.Histogram.Text = "chart2";
-            // 
-            // HistogramInput
-            // 
-            this.HistogramInput.AutoSize = true;
-            this.HistogramInput.Location = new System.Drawing.Point(2, 211);
-            this.HistogramInput.Name = "HistogramInput";
-            this.HistogramInput.Size = new System.Drawing.Size(143, 13);
-            this.HistogramInput.TabIndex = 14;
-            this.HistogramInput.Text = "Ilość przedziałów histogramu";
-            // 
-            // HistogramSelect
-            // 
-            this.HistogramSelect.FormattingEnabled = true;
-            this.HistogramSelect.Location = new System.Drawing.Point(145, 208);
-            this.HistogramSelect.Name = "HistogramSelect";
-            this.HistogramSelect.Size = new System.Drawing.Size(51, 21);
-            this.HistogramSelect.TabIndex = 15;
-            // 
-            // WartoscSrednia
-            // 
-            this.WartoscSrednia.AutoSize = true;
-            this.WartoscSrednia.Location = new System.Drawing.Point(8, 21);
-            this.WartoscSrednia.Name = "WartoscSrednia";
-            this.WartoscSrednia.Size = new System.Drawing.Size(84, 13);
-            this.WartoscSrednia.TabIndex = 0;
-            this.WartoscSrednia.Text = "Wartość średnia";
-            // 
-            // WartoscSredniaBezwzgledna
-            // 
-            this.WartoscSredniaBezwzgledna.AutoSize = true;
-            this.WartoscSredniaBezwzgledna.Location = new System.Drawing.Point(8, 44);
-            this.WartoscSredniaBezwzgledna.Name = "WartoscSredniaBezwzgledna";
-            this.WartoscSredniaBezwzgledna.Size = new System.Drawing.Size(149, 13);
-            this.WartoscSredniaBezwzgledna.TabIndex = 1;
-            this.WartoscSredniaBezwzgledna.Text = "Wartość średnia bezwzględna";
-            // 
-            // WartoscSkuteczna
-            // 
-            this.WartoscSkuteczna.AutoSize = true;
-            this.WartoscSkuteczna.Location = new System.Drawing.Point(8, 68);
-            this.WartoscSkuteczna.Name = "WartoscSkuteczna";
-            this.WartoscSkuteczna.Size = new System.Drawing.Size(99, 13);
-            this.WartoscSkuteczna.TabIndex = 2;
-            this.WartoscSkuteczna.Text = "Wartość skuteczna";
-            // 
-            // Wariacja
-            // 
-            this.Wariacja.AutoSize = true;
-            this.Wariacja.Location = new System.Drawing.Point(8, 92);
-            this.Wariacja.Name = "Wariacja";
-            this.Wariacja.Size = new System.Drawing.Size(49, 13);
-            this.Wariacja.TabIndex = 3;
-            this.Wariacja.Text = "Wariacja";
-            // 
-            // MocSrednia
-            // 
-            this.MocSrednia.AutoSize = true;
-            this.MocSrednia.Location = new System.Drawing.Point(8, 115);
-            this.MocSrednia.Name = "MocSrednia";
-            this.MocSrednia.Size = new System.Drawing.Size(65, 13);
-            this.MocSrednia.TabIndex = 4;
-            this.MocSrednia.Text = "Moc średnia";
-            this.MocSrednia.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // WartoscSredniaOutput
-            // 
-            this.WartoscSredniaOutput.AutoSize = true;
-            this.WartoscSredniaOutput.Location = new System.Drawing.Point(98, 21);
-            this.WartoscSredniaOutput.Name = "WartoscSredniaOutput";
-            this.WartoscSredniaOutput.Size = new System.Drawing.Size(35, 13);
-            this.WartoscSredniaOutput.TabIndex = 5;
-            this.WartoscSredniaOutput.Text = "label1";
-            // 
-            // WartoscSredniaBezwzglednaOutpu
-            // 
-            this.WartoscSredniaBezwzglednaOutpu.AutoSize = true;
-            this.WartoscSredniaBezwzglednaOutpu.Location = new System.Drawing.Point(163, 44);
-            this.WartoscSredniaBezwzglednaOutpu.Name = "WartoscSredniaBezwzglednaOutpu";
-            this.WartoscSredniaBezwzglednaOutpu.Size = new System.Drawing.Size(35, 13);
-            this.WartoscSredniaBezwzglednaOutpu.TabIndex = 6;
-            this.WartoscSredniaBezwzglednaOutpu.Text = "label2";
-            // 
-            // WartoscSkutecznaOutput
-            // 
-            this.WartoscSkutecznaOutput.AutoSize = true;
-            this.WartoscSkutecznaOutput.Location = new System.Drawing.Point(113, 68);
-            this.WartoscSkutecznaOutput.Name = "WartoscSkutecznaOutput";
-            this.WartoscSkutecznaOutput.Size = new System.Drawing.Size(35, 13);
-            this.WartoscSkutecznaOutput.TabIndex = 7;
-            this.WartoscSkutecznaOutput.Text = "label3";
-            // 
-            // WariacjaOutput
-            // 
-            this.WariacjaOutput.AutoSize = true;
-            this.WariacjaOutput.Location = new System.Drawing.Point(63, 92);
-            this.WariacjaOutput.Name = "WariacjaOutput";
-            this.WariacjaOutput.Size = new System.Drawing.Size(35, 13);
-            this.WariacjaOutput.TabIndex = 8;
-            this.WariacjaOutput.Text = "label4";
-            // 
-            // MocSredniaOutput
-            // 
-            this.MocSredniaOutput.AutoSize = true;
-            this.MocSredniaOutput.Location = new System.Drawing.Point(79, 115);
-            this.MocSredniaOutput.Name = "MocSredniaOutput";
-            this.MocSredniaOutput.Size = new System.Drawing.Size(35, 13);
-            this.MocSredniaOutput.TabIndex = 9;
-            this.MocSredniaOutput.Text = "label5";
             // 
             // CPS
             // 

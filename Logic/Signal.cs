@@ -29,7 +29,7 @@ namespace Cyfrowe.Logic
 
         public Signal() 
         {
-            //Amplituda = 5.0;
+            Amplituda = 5.0;
             CzasPoczatkowy = 0.0;
             CzasTrwaniaSygnalu = 10.0;
            

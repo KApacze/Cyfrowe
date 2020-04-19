@@ -15,7 +15,6 @@ namespace Cyfrowe.Logic.Signals
         {
             Nazwa = "Szum o rozkladzie jednostajnym";
             Rodzaj = Types.Ciagly;
-           
         }
 
         protected override double ValueAtTime(double Amin, double Amax)
