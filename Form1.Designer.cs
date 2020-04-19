@@ -70,6 +70,8 @@ namespace Cyfrowe
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.Plot = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.WspolczynnikWypelnienia = new System.Windows.Forms.Label();
+            this.WspolczynnikWypelnieniaInput = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -109,13 +111,13 @@ namespace Cyfrowe
             // importujToolStripMenuItem
             // 
             this.importujToolStripMenuItem.Name = "importujToolStripMenuItem";
-            this.importujToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.importujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importujToolStripMenuItem.Text = "Importuj";
             // 
             // exportujToolStripMenuItem
             // 
             this.exportujToolStripMenuItem.Name = "exportujToolStripMenuItem";
-            this.exportujToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.exportujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportujToolStripMenuItem.Text = "Exportuj";
             // 
             // splitContainer1
@@ -144,6 +146,8 @@ namespace Cyfrowe
             // 
             // Data.Panel1
             // 
+            this.Data.Panel1.Controls.Add(this.WspolczynnikWypelnieniaInput);
+            this.Data.Panel1.Controls.Add(this.WspolczynnikWypelnienia);
             this.Data.Panel1.Controls.Add(this.HistogramSelect);
             this.Data.Panel1.Controls.Add(this.HistogramInput);
             this.Data.Panel1.Controls.Add(this.CreateButton);
@@ -478,6 +482,23 @@ namespace Cyfrowe
             this.Histogram.TabIndex = 0;
             this.Histogram.Text = "chart2";
             // 
+            // WspolczynnikWypelnienia
+            // 
+            this.WspolczynnikWypelnienia.AutoSize = true;
+            this.WspolczynnikWypelnienia.Location = new System.Drawing.Point(-2, 167);
+            this.WspolczynnikWypelnienia.Name = "WspolczynnikWypelnienia";
+            this.WspolczynnikWypelnienia.Size = new System.Drawing.Size(135, 13);
+            this.WspolczynnikWypelnienia.TabIndex = 16;
+            this.WspolczynnikWypelnienia.Text = "Współczynnik wypełnienia";
+            this.WspolczynnikWypelnienia.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // WspolczynnikWypelnieniaInput
+            // 
+            this.WspolczynnikWypelnieniaInput.Location = new System.Drawing.Point(137, 165);
+            this.WspolczynnikWypelnieniaInput.Name = "WspolczynnikWypelnieniaInput";
+            this.WspolczynnikWypelnieniaInput.Size = new System.Drawing.Size(129, 20);
+            this.WspolczynnikWypelnieniaInput.TabIndex = 17;
+            // 
             // CPS
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -548,6 +569,8 @@ namespace Cyfrowe
         private System.Windows.Forms.Label WartoscSkutecznaOutput;
         private System.Windows.Forms.Label WartoscSredniaBezwzglednaOutpu;
         private System.Windows.Forms.Label WartoscSredniaOutput;
+        private System.Windows.Forms.Label WspolczynnikWypelnienia;
+        private System.Windows.Forms.TextBox WspolczynnikWypelnieniaInput;
     }
 }
 

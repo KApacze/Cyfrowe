@@ -56,6 +56,14 @@
     <Compile Include="Logic\Point.cs" />
     <Compile Include="Logic\Signal.cs" />
     <Compile Include="Logic\Signals\S1.cs" />
+    <Compile Include="Logic\Signals\S2.cs" />
+    <Compile Include="Logic\Signals\S4.cs" />
+    <Compile Include="Logic\Signals\S3.cs" />
+    <Compile Include="Logic\Signals\S6.cs" />
+    <Compile Include="Logic\Signals\S5.cs" />
+    <Compile Include="Logic\Signals\S7.cs" />
+    <Compile Include="Logic\Signals\S8.cs" />
+    <Compile Include="Logic\Signals\S9.cs" />
     <Compile Include="Logic\Types.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,8 +92,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

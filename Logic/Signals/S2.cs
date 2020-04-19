@@ -7,28 +7,27 @@ using static Cyfrowe.Logic.SignalTypes;
 
 namespace Cyfrowe.Logic.Signals
 {
-    class S1 : Signal
+    class S2 : Signal
     {
         private readonly Random _rand = new Random();
 
-        public S1()
+        public S2()
         {
-            Nazwa = "Szum o rozkladzie jednostajnym";
+            Nazwa = "Szum gaussowski";
             Rodzaj = Types.Ciagly;
             CzyAmplituda = true;
             CzyczasPoczatkowy = true;
             CzyCzasTrwaniaSygnalu = true;
-       
-
-    }
-
-    protected override double ValueAtTime(double t)
+        }
+        protected override double ValueAtTime(double t)
         {
-            double Amax = this.Amplituda;
-            double Amin = - this.Amplituda;
-            //random.NextDouble() * (maximum - minimum) + minimum
-            double A = _rand.NextDouble() *(Amax - Amin) + Amin;
-            return A;
+            double A = this.Amplituda;
+
+            double val = (_rand.NextDouble() * (A + A) - A) +
+                    (_rand.NextDouble() * (A + A) - A) +
+                    (_rand.NextDouble() * (A + A) - A);
+
+            return val;
         }
     }
 }

@@ -8,7 +8,7 @@ using static Cyfrowe.Logic.SignalTypes;
 
 namespace Cyfrowe.Logic
 {
-    //public enum Types { Ciagly, Dyskretny }
+   
     abstract class Signal
     {
         public string Nazwa { get; set; }
@@ -19,27 +19,39 @@ namespace Cyfrowe.Logic
         public double WspolczynnikWypelnienia { get; set; }
         public double PoczatekSygnalu { get; set; }
         public double CzestotliwoscProbkowania { get; set; }
+        public double SkokCzasowy { get; set; }
         public Types Rodzaj;
 
         public List<Point> PointList { get; set; }
 
 
-     
-        protected abstract double ValueAtTime(double Amax, double Amin);
+        public bool CzyAmplituda { get; set; }
+        public bool CzyCzestotliwosc { get; set; }
+        public bool CzyczasPoczatkowy { get; set; }
+        public bool CzyCzasTrwaniaSygnalu { get; set; }
+        public bool CzyOkresSygnalu { get; set; }
+        public bool CzySkokCzasowy { get; set; }
+        public bool CzyWspolczynnikWypelnienia { get; set; }
+
+
+
+
+        protected abstract double ValueAtTime(double t);
 
         public Signal() 
         {
+            CzyCzestotliwosc = true;
             Amplituda = 5.0;
             CzasPoczatkowy = 0.0;
             CzasTrwaniaSygnalu = 10.0;
-           
-            WspolczynnikWypelnienia = 1;
+            SkokCzasowy = 2.0;
+            WspolczynnikWypelnienia = 1.0;
             PoczatekSygnalu = 0.0;
            // OkresPodstawowy = 2.0;
             CzestotliwoscProbkowania = 100;
             PointList = new List<Point>();
             for (double i = CzasPoczatkowy; i <= CzasPoczatkowy + CzasTrwaniaSygnalu; i += 1 / CzestotliwoscProbkowania)
-                PointList.Add(new Point(i, ValueAtTime(-5,5)));          
+                PointList.Add(new Point(i, ValueAtTime(i)));          
         }
 
         public double CalculateWartoscSrednia()

@@ -32,7 +32,7 @@ namespace Cyfrowe
             Signal signal;
             if (SignalSelect.SelectedIndex == 0)
             {
-                signal = new S1();
+                signal = new S2();
                 //  this.HistogramInput.Text = "5";
 
                 //  this.SkokCzasowyInput.Text = signal.;
@@ -41,6 +41,7 @@ namespace Cyfrowe
                 this.CzasPoczatkowyInput.Text = signal.PoczatekSygnalu.ToString();
                 this.AmplitudaInput.Text = signal.Amplituda.ToString();
                 this.CzestotliwoscInput.Text = signal.CzestotliwoscProbkowania.ToString();
+                this.WspolczynnikWypelnieniaInput.Text = signal.WspolczynnikWypelnienia.ToString();
 
 
                 //Calculating
@@ -108,6 +109,11 @@ namespace Cyfrowe
         }
 
         private void Plot_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
