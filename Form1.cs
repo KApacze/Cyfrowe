@@ -35,6 +35,7 @@ namespace Cyfrowe
                 new S11()
              };
         private Signal CurrentSignal;
+        private Signal SecondarySignal;
         public CPS()
         {
             InitializeComponent();
@@ -125,21 +126,11 @@ namespace Cyfrowe
             {
 
                 //Display current setting
-                //this.CzasTrwaniaSygnaluInput.Text = signal.CzasTrwaniaSygnalu.ToString();
-                //this.CzasPoczatkowyInput.Text = signal.PoczatekSygnalu.ToString();
-                //this.AmplitudaInput.Text = signal.Amplituda.ToString();
-                //this.CzestotliwoscInput.Text = signal.CzestotliwoscProbkowania.ToString();
-                //this.WspolczynnikWypelnieniaInput.Text = signal.WspolczynnikWypelnienia.ToString();
-                //this.OkresSygnaluInput.Text = signal.OkresPodstawowy.ToString();
-                //this.SkokCzasowyInput.Text = signal.SkokCzasowy.ToString();
+                displayCurrentSettings(signal);
 
 
                 //Calculating
-                this.MocSredniaOutput.Text = signal.CalculateMocSrednia().ToString();
-                this.WariacjaOutput.Text = signal.CalculateWariacje().ToString();
-                this.WartoscSkutecznaOutput.Text = signal.CalculateWartoscSkuteczna().ToString();
-                this.WartoscSredniaBezwzglednaOutpu.Text = signal.CalculateSredniaWartoscBezwzgledna().ToString();
-                this.WartoscSredniaOutput.Text = signal.CalculateWartoscSrednia().ToString();
+                calculateAll(signal);
 
                 drawPlot(signal);
                 drawHistogram(signal);
@@ -342,15 +333,7 @@ namespace Cyfrowe
 
         private void importujToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.ShowDialog();
-            openFileDialog1.Title = "Browse Text Files";
-            openFileDialog1.DefaultExt = "txt";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
-            openFileDialog1.CheckFileExists = true;
-            openFileDialog1.CheckPathExists = true;
-
+            OpenFileDialog openFileDialog1 = import();          
             StreamReader sr = new StreamReader(openFileDialog1.FileName);
             Signal signal = new Imported(sr);
             sr.Close();
@@ -360,6 +343,20 @@ namespace Cyfrowe
             CurrentSignal = signal;
         }
 
+
+        private OpenFileDialog import()
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.ShowDialog();
+            openFileDialog1.Title = "Browse Text Files";
+            openFileDialog1.DefaultExt = "txt";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+            return openFileDialog1;
+
+        }
         private void saveSignal(StreamWriter sw, Signal signal)
         {
             sw.WriteLine(signal.Rodzaj);
@@ -415,6 +412,64 @@ namespace Cyfrowe
             this.NumerProbkiSkokuInput.Text = signal.NrProbki.ToString();
             this.PrawdopodobienstwoAInput.Text = signal.PrawopodobienstwoA.ToString();
 
+        }
+
+        private void calculateAll(Signal signal)
+        {
+            this.MocSredniaOutput.Text = signal.CalculateMocSrednia().ToString();
+            this.WariacjaOutput.Text = signal.CalculateWariacje().ToString();
+            this.WartoscSkutecznaOutput.Text = signal.CalculateWartoscSkuteczna().ToString();
+            this.WartoscSredniaBezwzglednaOutpu.Text = signal.CalculateSredniaWartoscBezwzgledna().ToString();
+            this.WartoscSredniaOutput.Text = signal.CalculateWartoscSrednia().ToString();
+        }
+
+        private void WgrajButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = import();
+            StreamReader sr = new StreamReader(openFileDialog1.FileName);
+            Signal signal = new Imported(sr);
+            sr.Close();           
+            SecondarySignal = signal;
+        }
+
+        private void OperacjeSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+ 
+        }
+
+        private void ObliczButton_Click(object sender, EventArgs e)
+        {
+            if(CurrentSignal != null && SecondarySignal != null)
+            {
+                Signal signal;
+                if(OperacjeSelect.SelectedIndex == 0)
+                {
+                    signal = Logic.Operations.Add.Dodaj(CurrentSignal,
+                                                  SecondarySignal);
+                }
+                else if (OperacjeSelect.SelectedIndex == 1)
+                {
+                    signal = Logic.Operations.Substract.Odejmij(CurrentSignal,
+                                                  SecondarySignal);
+                }
+                else if (OperacjeSelect.SelectedIndex == 2)
+                {
+                    signal = Logic.Operations.Multiply.Mnoz(CurrentSignal,
+                                                  SecondarySignal);
+                }
+                else
+                {
+                    signal = Logic.Operations.Divide.Dziel(CurrentSignal,
+                                                  SecondarySignal);
+                }
+
+
+                drawPlot(signal);
+                drawHistogram(signal);
+
+                CurrentSignal = signal;
+
+            }
         }
     }
         

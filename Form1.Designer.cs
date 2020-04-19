@@ -31,10 +31,10 @@ namespace Cyfrowe
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,9 +70,6 @@ namespace Cyfrowe
             this.label4 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -99,6 +96,11 @@ namespace Cyfrowe
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.Plot = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.DodatkowySygnal = new System.Windows.Forms.Label();
+            this.WgrajButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.OperacjeSelect = new System.Windows.Forms.ComboBox();
+            this.ObliczButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -138,14 +140,14 @@ namespace Cyfrowe
             // importujToolStripMenuItem
             // 
             this.importujToolStripMenuItem.Name = "importujToolStripMenuItem";
-            this.importujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importujToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.importujToolStripMenuItem.Text = "Importuj";
             this.importujToolStripMenuItem.Click += new System.EventHandler(this.importujToolStripMenuItem_Click);
             // 
             // exportujToolStripMenuItem
             // 
             this.exportujToolStripMenuItem.Name = "exportujToolStripMenuItem";
-            this.exportujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportujToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.exportujToolStripMenuItem.Text = "Exportuj";
             this.exportujToolStripMenuItem.Click += new System.EventHandler(this.exportujToolStripMenuItem_Click);
             // 
@@ -175,6 +177,11 @@ namespace Cyfrowe
             // 
             // Data.Panel1
             // 
+            this.Data.Panel1.Controls.Add(this.ObliczButton);
+            this.Data.Panel1.Controls.Add(this.OperacjeSelect);
+            this.Data.Panel1.Controls.Add(this.label1);
+            this.Data.Panel1.Controls.Add(this.WgrajButton);
+            this.Data.Panel1.Controls.Add(this.DodatkowySygnal);
             this.Data.Panel1.Controls.Add(this.PrawdopodobienstwoAInput);
             this.Data.Panel1.Controls.Add(this.PrawdopodobieństwoA);
             this.Data.Panel1.Controls.Add(this.NumerProbkiSkokuInput);
@@ -204,9 +211,6 @@ namespace Cyfrowe
             this.Data.Panel1.Controls.Add(this.label4);
             this.Data.Panel1.Controls.Add(this.textBox5);
             this.Data.Panel1.Controls.Add(this.label5);
-            this.Data.Panel1.Controls.Add(this.comboBox1);
-            this.Data.Panel1.Controls.Add(this.label6);
-            this.Data.Panel1.Controls.Add(this.button1);
             this.Data.Panel1.Controls.Add(this.textBox6);
             this.Data.Panel1.Controls.Add(this.label7);
             this.Data.Panel1.Controls.Add(this.textBox7);
@@ -234,7 +238,7 @@ namespace Cyfrowe
             this.Data.Panel2.Controls.Add(this.WartoscSredniaBezwzgledna);
             this.Data.Panel2.Controls.Add(this.WartoscSrednia);
             this.Data.Size = new System.Drawing.Size(265, 587);
-            this.Data.SplitterDistance = 361;
+            this.Data.SplitterDistance = 384;
             this.Data.TabIndex = 0;
             // 
             // PrawdopodobienstwoAInput
@@ -315,7 +319,7 @@ namespace Cyfrowe
             "10",
             "15",
             "20"});
-            this.HistogramSelect.Location = new System.Drawing.Point(147, 308);
+            this.HistogramSelect.Location = new System.Drawing.Point(147, 258);
             this.HistogramSelect.Name = "HistogramSelect";
             this.HistogramSelect.Size = new System.Drawing.Size(51, 21);
             this.HistogramSelect.TabIndex = 15;
@@ -323,7 +327,7 @@ namespace Cyfrowe
             // HistogramInput
             // 
             this.HistogramInput.AutoSize = true;
-            this.HistogramInput.Location = new System.Drawing.Point(3, 311);
+            this.HistogramInput.Location = new System.Drawing.Point(-2, 261);
             this.HistogramInput.Name = "HistogramInput";
             this.HistogramInput.Size = new System.Drawing.Size(143, 13);
             this.HistogramInput.TabIndex = 14;
@@ -331,7 +335,7 @@ namespace Cyfrowe
             // 
             // CreateButton
             // 
-            this.CreateButton.Location = new System.Drawing.Point(89, 335);
+            this.CreateButton.Location = new System.Drawing.Point(89, 285);
             this.CreateButton.Name = "CreateButton";
             this.CreateButton.Size = new System.Drawing.Size(75, 23);
             this.CreateButton.TabIndex = 13;
@@ -513,38 +517,6 @@ namespace Cyfrowe
             this.label5.Size = new System.Drawing.Size(135, 13);
             this.label5.TabIndex = 16;
             this.label5.Text = "Współczynnik wypełnienia";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "5",
-            "10",
-            "15",
-            "20"});
-            this.comboBox1.Location = new System.Drawing.Point(147, 308);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(51, 21);
-            this.comboBox1.TabIndex = 15;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 311);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(143, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Ilość przedziałów histogramu";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(89, 335);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Stworz";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox6
             // 
@@ -786,13 +758,13 @@ namespace Cyfrowe
             // 
             // Plot
             // 
-            chartArea3.Name = "ChartArea1";
-            this.Plot.ChartAreas.Add(chartArea3);
+            chartArea5.Name = "ChartArea1";
+            this.Plot.ChartAreas.Add(chartArea5);
             this.Plot.Location = new System.Drawing.Point(3, 3);
             this.Plot.Name = "Plot";
-            series3.ChartArea = "ChartArea1";
-            series3.Name = "Series1";
-            this.Plot.Series.Add(series3);
+            series5.ChartArea = "ChartArea1";
+            series5.Name = "Series1";
+            this.Plot.Series.Add(series5);
             this.Plot.Size = new System.Drawing.Size(522, 274);
             this.Plot.TabIndex = 0;
             this.Plot.Text = " ";
@@ -800,18 +772,71 @@ namespace Cyfrowe
             // 
             // Histogram
             // 
-            chartArea4.Name = "ChartArea1";
-            this.Histogram.ChartAreas.Add(chartArea4);
+            chartArea6.Name = "ChartArea1";
+            this.Histogram.ChartAreas.Add(chartArea6);
             this.Histogram.Location = new System.Drawing.Point(2, 1);
             this.Histogram.Margin = new System.Windows.Forms.Padding(0);
             this.Histogram.Name = "Histogram";
             this.Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series4.ChartArea = "ChartArea1";
-            series4.Name = "Series1";
-            this.Histogram.Series.Add(series4);
+            series6.ChartArea = "ChartArea1";
+            series6.Name = "Series1";
+            this.Histogram.Series.Add(series6);
             this.Histogram.Size = new System.Drawing.Size(526, 304);
             this.Histogram.TabIndex = 0;
             this.Histogram.Text = "chart2";
+            // 
+            // DodatkowySygnal
+            // 
+            this.DodatkowySygnal.AutoSize = true;
+            this.DodatkowySygnal.Location = new System.Drawing.Point(2, 316);
+            this.DodatkowySygnal.Name = "DodatkowySygnal";
+            this.DodatkowySygnal.Size = new System.Drawing.Size(96, 13);
+            this.DodatkowySygnal.TabIndex = 24;
+            this.DodatkowySygnal.Text = "Dodatkowy sygnał";
+            // 
+            // WgrajButton
+            // 
+            this.WgrajButton.Location = new System.Drawing.Point(104, 311);
+            this.WgrajButton.Name = "WgrajButton";
+            this.WgrajButton.Size = new System.Drawing.Size(75, 23);
+            this.WgrajButton.TabIndex = 25;
+            this.WgrajButton.Text = "Wgraj";
+            this.WgrajButton.UseVisualStyleBackColor = true;
+            this.WgrajButton.Click += new System.EventHandler(this.WgrajButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(185, 316);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "nie wgrany";
+            // 
+            // OperacjeSelect
+            // 
+            this.OperacjeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OperacjeSelect.FormattingEnabled = true;
+            this.OperacjeSelect.Items.AddRange(new object[] {
+            "Dodawanie",
+            "Odejmowanie",
+            "Mnożenie",
+            "Dzielenie"});
+            this.OperacjeSelect.Location = new System.Drawing.Point(5, 340);
+            this.OperacjeSelect.Name = "OperacjeSelect";
+            this.OperacjeSelect.Size = new System.Drawing.Size(121, 21);
+            this.OperacjeSelect.TabIndex = 27;
+            this.OperacjeSelect.SelectedIndexChanged += new System.EventHandler(this.OperacjeSelect_SelectedIndexChanged);
+            // 
+            // ObliczButton
+            // 
+            this.ObliczButton.Location = new System.Drawing.Point(137, 340);
+            this.ObliczButton.Name = "ObliczButton";
+            this.ObliczButton.Size = new System.Drawing.Size(75, 23);
+            this.ObliczButton.TabIndex = 28;
+            this.ObliczButton.Text = "Oblicz";
+            this.ObliczButton.UseVisualStyleBackColor = true;
+            this.ObliczButton.Click += new System.EventHandler(this.ObliczButton_Click);
             // 
             // CPS
             // 
@@ -896,9 +921,6 @@ namespace Cyfrowe
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox7;
@@ -912,6 +934,11 @@ namespace Cyfrowe
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button ObliczButton;
+        private System.Windows.Forms.ComboBox OperacjeSelect;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button WgrajButton;
+        private System.Windows.Forms.Label DodatkowySygnal;
     }
 }
 

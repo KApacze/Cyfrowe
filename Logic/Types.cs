@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cyfrowe.Logic
 {
-    class SignalTypes
+    public class SignalTypes
     {
         public enum Types { Ciagly, Dyskretny }
 

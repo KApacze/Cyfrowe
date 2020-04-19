@@ -53,6 +53,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logic\Operations\Add.cs" />
+    <Compile Include="Logic\Operations\Divide.cs" />
+    <Compile Include="Logic\Operations\Multiply.cs" />
+    <Compile Include="Logic\Operations\Substract.cs" />
     <Compile Include="Logic\Point.cs" />
     <Compile Include="Logic\Signal.cs" />
     <Compile Include="Logic\Signals\Imported.cs" />

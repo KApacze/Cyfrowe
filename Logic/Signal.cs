@@ -10,7 +10,7 @@ using System.IO;
 namespace Cyfrowe.Logic
 {
    
-    abstract class Signal
+    public abstract class Signal
     {
         public string Nazwa { get; set; }
         public double Amplituda { get; set; }
@@ -60,6 +60,7 @@ namespace Cyfrowe.Logic
 
             GenerateSignal();    
         }
+
 
         public Signal(StreamReader sr)
         {

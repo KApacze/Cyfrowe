@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cyfrowe.Logic.Signals
 {
-    class Imported : Signal
+    public class Imported : Signal
     {
         public Imported(StreamReader sr) : base(sr)
         {
