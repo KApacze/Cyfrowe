@@ -18,7 +18,6 @@ namespace Cyfrowe.Logic.Signals
             CzyAmplituda = true;
             CzyczasPoczatkowy = true;
             CzyCzasTrwaniaSygnalu = true;
-       
 
     }
 

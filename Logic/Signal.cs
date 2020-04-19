@@ -20,6 +20,10 @@ namespace Cyfrowe.Logic
         public double PoczatekSygnalu { get; set; }
         public double CzestotliwoscProbkowania { get; set; }
         public double SkokCzasowy { get; set; }
+        public double NrPierwszejProbki { get; set; }
+        public double NrProbki { get; set; }
+        public double PrawopodobienstwoA { get; set; }
+
         public Types Rodzaj;
 
         public List<Point> PointList { get; set; }
@@ -32,6 +36,9 @@ namespace Cyfrowe.Logic
         public bool CzyOkresSygnalu { get; set; }
         public bool CzySkokCzasowy { get; set; }
         public bool CzyWspolczynnikWypelnienia { get; set; }
+        public bool CzyNrPierwszejProbki { get; set; }
+        public bool CzyNrProbki { get; set; }
+        public bool CzyPrawdopodobienstwoA { get; set; }
 
 
 
@@ -41,22 +48,33 @@ namespace Cyfrowe.Logic
         public Signal() 
         {
             CzyCzestotliwosc = true;
-            Amplituda = 5.0;
-            CzasPoczatkowy = 0.0;
-            CzasTrwaniaSygnalu = 10.0;
-            SkokCzasowy = 2.0;
-            WspolczynnikWypelnienia = 1.0;
-            PoczatekSygnalu = 0.0;
-            OkresPodstawowy = 2.0;
-            CzestotliwoscProbkowania = 100;
+            //Amplituda = 5.0;
+            //CzasPoczatkowy = 0.0;
+            //CzasTrwaniaSygnalu = 10.0;
+            //SkokCzasowy = 2.0;
+            //WspolczynnikWypelnienia = 1.0;
+            //PoczatekSygnalu = 0.0;
+            //OkresPodstawowy = 2.0;
+            //CzestotliwoscProbkowania = 100;
 
             GenerateSignal();    
         }
         public void GenerateSignal()
         {
             PointList = new List<Point>();
-            for (double i = CzasPoczatkowy; i <= CzasPoczatkowy + CzasTrwaniaSygnalu; i += 1 / CzestotliwoscProbkowania)
-                PointList.Add(new Point(i, ValueAtTime(i)));
+            if (this.Rodzaj.Equals(Types.Ciagly))
+            {
+                for (double i = CzasPoczatkowy; i <= CzasPoczatkowy + CzasTrwaniaSygnalu; i += 1 / CzestotliwoscProbkowania)
+                    PointList.Add(new Point(i, ValueAtTime(i)));
+
+            }
+            else 
+            {
+                if (NrProbki == 0) NrProbki = CzasTrwaniaSygnalu;
+                for (double i = NrPierwszejProbki; i <= NrPierwszejProbki + NrProbki; i++)
+                    
+                    PointList.Add(new Point(i, ValueAtTime(i)));
+            }
         }
         public double CalculateWartoscSrednia()
         {
