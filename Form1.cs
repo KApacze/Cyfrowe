@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -296,6 +297,89 @@ namespace Cyfrowe
 
 
             signal.GenerateSignal();
+
+        }
+
+        private void exportujToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.Title = "Save an signal";
+            saveFileDialog1.ShowDialog();
+            saveFileDialog1.DefaultExt = "txt";
+            saveFileDialog1.CheckFileExists = true;
+            saveFileDialog1.CheckPathExists = true;
+
+            // If the file name is not an empty string open it for saving.
+            if (saveFileDialog1.FileName != "")
+            {
+                try
+                {
+                    String path = saveFileDialog1.FileName;
+                    StreamWriter sw = new StreamWriter(path);
+                    saveSignal(sw, CurrentSignal);
+                    sw.Close();
+
+
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("Can't Save file");
+                }
+            }
+        }
+
+        private void importujToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.ShowDialog();
+            openFileDialog1.Title = "Browse Text Files";
+            openFileDialog1.DefaultExt = "txt";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+
+        }
+
+        private void saveSignal(StreamWriter sw, Signal signal)
+        {
+            sw.WriteLine(signal.Rodzaj);
+
+            //bools
+            sw.WriteLine(signal.CzyAmplituda);
+            sw.WriteLine(signal.CzyCzestotliwosc);
+            sw.WriteLine(signal.CzyczasPoczatkowy);
+            sw.WriteLine(signal.CzyCzasTrwaniaSygnalu);
+            sw.WriteLine(signal.CzyOkresSygnalu);
+            sw.WriteLine(signal.CzySkokCzasowy);
+            sw.WriteLine(signal.CzyWspolczynnikWypelnienia);
+            sw.WriteLine(signal.CzyNrPierwszejProbki);
+            sw.WriteLine(signal.CzyNrProbki);
+            sw.WriteLine(signal.CzyPrawdopodobienstwoA);
+
+            //variables
+            sw.WriteLine(signal.Nazwa);
+            sw.WriteLine(signal.Amplituda);
+            sw.WriteLine(signal.CzasPoczatkowy);
+            sw.WriteLine(signal.CzasTrwaniaSygnalu);
+            sw.WriteLine(signal.OkresPodstawowy);
+            sw.WriteLine(signal.WspolczynnikWypelnienia);
+            sw.WriteLine(signal.PoczatekSygnalu);
+            sw.WriteLine(signal.CzestotliwoscProbkowania);
+            sw.WriteLine(signal.SkokCzasowy);
+            sw.WriteLine(signal.NrPierwszejProbki);
+            sw.WriteLine(signal.NrProbki);
+            sw.WriteLine(signal.PrawopodobienstwoA);
+
+            //Number of points
+            sw.WriteLine(signal.PointList.Count);
+            //points
+            foreach(Point p in signal.PointList)
+            {
+                sw.WriteLine(p.X+" "+ p.Y);
+            }
+
 
         }
     }

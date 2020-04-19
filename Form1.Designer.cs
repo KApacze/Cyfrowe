@@ -138,14 +138,16 @@ namespace Cyfrowe
             // importujToolStripMenuItem
             // 
             this.importujToolStripMenuItem.Name = "importujToolStripMenuItem";
-            this.importujToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.importujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importujToolStripMenuItem.Text = "Importuj";
+            this.importujToolStripMenuItem.Click += new System.EventHandler(this.importujToolStripMenuItem_Click);
             // 
             // exportujToolStripMenuItem
             // 
             this.exportujToolStripMenuItem.Name = "exportujToolStripMenuItem";
-            this.exportujToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.exportujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportujToolStripMenuItem.Text = "Exportuj";
+            this.exportujToolStripMenuItem.Click += new System.EventHandler(this.exportujToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -317,7 +319,6 @@ namespace Cyfrowe
             this.HistogramSelect.Name = "HistogramSelect";
             this.HistogramSelect.Size = new System.Drawing.Size(51, 21);
             this.HistogramSelect.TabIndex = 15;
-            this.HistogramSelect.SelectedIndex = 0;
             // 
             // HistogramInput
             // 
@@ -473,7 +474,6 @@ namespace Cyfrowe
             this.SignalSelect.Size = new System.Drawing.Size(259, 21);
             this.SignalSelect.TabIndex = 0;
             this.SignalSelect.SelectedIndexChanged += new System.EventHandler(this.SignalSelect_SelectedIndexChanged);
-            this.SignalSelect.SelectedIndex = 0;
             // 
             // textBox3
             // 
