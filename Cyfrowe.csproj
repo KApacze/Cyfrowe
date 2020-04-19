@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Logic\Point.cs" />
     <Compile Include="Logic\Signal.cs" />
+    <Compile Include="Logic\Signals\Imported.cs" />
     <Compile Include="Logic\Signals\S1.cs" />
     <Compile Include="Logic\Signals\S10.cs" />
     <Compile Include="Logic\Signals\S11.cs" />

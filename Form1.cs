@@ -38,6 +38,7 @@ namespace Cyfrowe
         public CPS()
         {
             InitializeComponent();
+            this.HistogramSelect.SelectedIndex = 0;
         }
 
         private void SignalSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,10 +120,10 @@ namespace Cyfrowe
         {
             SetVariables(CurrentSignal);
             Signal signal = CurrentSignal;
-            
-            if (SignalSelect.SelectedIndex >= 0 && SignalSelect.SelectedIndex <=11)
+
+            if (SignalSelect.SelectedIndex >= 0 && SignalSelect.SelectedIndex <= 11)
             {
-                
+
                 //Display current setting
                 //this.CzasTrwaniaSygnaluInput.Text = signal.CzasTrwaniaSygnalu.ToString();
                 //this.CzasPoczatkowyInput.Text = signal.PoczatekSygnalu.ToString();
@@ -141,61 +142,10 @@ namespace Cyfrowe
                 this.WartoscSredniaOutput.Text = signal.CalculateWartoscSrednia().ToString();
 
                 drawPlot(signal);
-                
-
-                //Drawing Histogram
-                this.Histogram.Series.Clear();
-                this.Histogram.Titles.Clear();
-                this.Histogram.Titles.Add(this.SignalSelect.SelectedItem.ToString());
-                int size = Int32.Parse(this.HistogramSelect.SelectedItem.ToString());
-                
-
-
-                if (size == null) size = 5;
-                int[] values = new int[size];
-                double[] value = new double[size];
-                double min = signal.PointList.Min(r => r.Y);
-                double max = signal.PointList.Max(r => r.Y);
-                //this.Histogram.ChartAreas[0].AxisX.Maximum = max;
-                //this.Histogram.ChartAreas[0].AxisX.Minimum = min;
-                
-                this.Histogram.ChartAreas[0].AxisX.LabelStyle.Format = "0.00";
-                this.Histogram.ChartAreas[0].AxisY.IsStartedFromZero = true;
-                double skip = (max - min) / size;
-               // this.Histogram.Titles.Add("Zakres +/-" + Math.Round(skip/2,2));
-                value[0] = min;
-
-                for (int i = 1; i < size; i++)
-                {
-                    value[i] = value[i - 1] + skip;
-                }
-
-                Series HSeries = this.Histogram.Series.Add(this.SignalSelect.SelectedItem.ToString());
-                foreach (Point point in signal.PointList)
-                {
-                   for(int i =0; i < size-1; i++)
-                        if(point.Y>= value[i] && point.Y < value[i+1])
-                        {
-                            values[i]++;
-                            continue;
-                        }
-                    if (point.Y > value[size - 1])
-                        values[size - 1]++;
-                }
-                
-                for(int i = 0; i < size; i++)
-                {
-                    HSeries.Points.AddXY(Math.Round(value[i],2) + size/4, values[i]);
-                }
-                this.Histogram.ChartAreas[0].AxisY.Maximum = values.Max(r => r);
-                this.Histogram.ChartAreas[0].AxisX.Maximum = value.Max(r => r)+size; 
-                this.Histogram.ChartAreas[0].AxisX.Minimum = value.Min(r => r) ; 
-
-
-                foreach (Series s in Histogram.Series)
-                    s.CustomProperties = "PointWidth = 1";
-
+                drawHistogram(signal);
             }
+
+
         }
 
         private void Plot_Click(object sender, EventArgs e)
@@ -214,9 +164,9 @@ namespace Cyfrowe
 
             this.Plot.Series.Clear();
             this.Plot.Titles.Clear();
-            this.Plot.Titles.Add(this.SignalSelect.SelectedItem.ToString());
+            this.Plot.Titles.Add(signal.Nazwa);
 
-            Series series = this.Plot.Series.Add(this.SignalSelect.SelectedItem.ToString());
+            Series series = this.Plot.Series.Add(signal.Nazwa);
             if (signal.Rodzaj.Equals(Types.Ciagly))
                 series.ChartType = SeriesChartType.Line;
             else series.ChartType = SeriesChartType.Point;
@@ -226,6 +176,67 @@ namespace Cyfrowe
 
 
         }
+
+            private void drawHistogram(Signal signal)
+            {
+                //Drawing Histogram
+                this.Histogram.Series.Clear();
+                this.Histogram.Titles.Clear();
+                this.Histogram.Titles.Add(signal.Nazwa);
+                 int size;
+                 if (string.IsNullOrEmpty(this.HistogramSelect.SelectedItem.ToString())) { 
+                size = 5;
+                 } else 
+                size = Int32.Parse(this.HistogramSelect.SelectedItem.ToString());
+
+
+
+                if (size == null) size = 5;
+                int[] values = new int[size];
+                double[] value = new double[size];
+                double min = signal.PointList.Min(r => r.Y);
+                double max = signal.PointList.Max(r => r.Y);
+                //this.Histogram.ChartAreas[0].AxisX.Maximum = max;
+                //this.Histogram.ChartAreas[0].AxisX.Minimum = min;
+
+                this.Histogram.ChartAreas[0].AxisX.LabelStyle.Format = "0.00";
+                this.Histogram.ChartAreas[0].AxisY.IsStartedFromZero = true;
+                double skip = (max - min) / size;
+                // this.Histogram.Titles.Add("Zakres +/-" + Math.Round(skip/2,2));
+                value[0] = min;
+
+                for (int i = 1; i < size; i++)
+                {
+                    value[i] = value[i - 1] + skip;
+                }
+
+                Series HSeries = this.Histogram.Series.Add(signal.Nazwa);
+                foreach (Point point in signal.PointList)
+                {
+                    for (int i = 0; i < size - 1; i++)
+                        if (point.Y >= value[i] && point.Y < value[i + 1])
+                        {
+                            values[i]++;
+                            continue;
+                        }
+                    if (point.Y > value[size - 1])
+                        values[size - 1]++;
+                }
+
+                for (int i = 0; i < size; i++)
+                {
+                    HSeries.Points.AddXY(Math.Round(value[i], 2) + size / 4, values[i]);
+                }
+                this.Histogram.ChartAreas[0].AxisY.Maximum = values.Max(r => r);
+                this.Histogram.ChartAreas[0].AxisX.Maximum = value.Max(r => r) + size;
+                this.Histogram.ChartAreas[0].AxisX.Minimum = value.Min(r => r);
+
+
+                foreach (Series s in Histogram.Series)
+                    s.CustomProperties = "PointWidth = 1";
+
+            }
+        
 
         private void SetVariables(Signal signal)
         {
@@ -340,6 +351,13 @@ namespace Cyfrowe
             openFileDialog1.CheckFileExists = true;
             openFileDialog1.CheckPathExists = true;
 
+            StreamReader sr = new StreamReader(openFileDialog1.FileName);
+            Signal signal = new Imported(sr);
+            sr.Close();
+            drawPlot(signal);
+            drawHistogram(signal);
+            displayCurrentSettings(signal);
+            CurrentSignal = signal;
         }
 
         private void saveSignal(StreamWriter sw, Signal signal)
@@ -380,6 +398,22 @@ namespace Cyfrowe
                 sw.WriteLine(p.X+" "+ p.Y);
             }
 
+
+        }
+
+
+        private void displayCurrentSettings(Signal signal)
+        {
+            this.CzasTrwaniaSygnaluInput.Text = signal.CzasTrwaniaSygnalu.ToString();
+            this.CzasPoczatkowyInput.Text = signal.PoczatekSygnalu.ToString();
+            this.AmplitudaInput.Text = signal.Amplituda.ToString();
+            this.CzestotliwoscInput.Text = signal.CzestotliwoscProbkowania.ToString();
+            this.WspolczynnikWypelnieniaInput.Text = signal.WspolczynnikWypelnienia.ToString();
+            this.OkresSygnaluInput.Text = signal.OkresPodstawowy.ToString();
+            this.SkokCzasowyInput.Text = signal.SkokCzasowy.ToString();
+            this.NumerPierwszejProbkiInput.Text = signal.NrPierwszejProbki.ToString();
+            this.NumerProbkiSkokuInput.Text = signal.NrProbki.ToString();
+            this.PrawdopodobienstwoAInput.Text = signal.PrawopodobienstwoA.ToString();
 
         }
     }

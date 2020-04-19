@@ -5,6 +5,7 @@ using System.Text;
 using System.Numerics;
 using System.Threading.Tasks;
 using static Cyfrowe.Logic.SignalTypes;
+using System.IO;
 
 namespace Cyfrowe.Logic
 {
@@ -58,6 +59,57 @@ namespace Cyfrowe.Logic
             //CzestotliwoscProbkowania = 100;
 
             GenerateSignal();    
+        }
+
+        public Signal(StreamReader sr)
+        {
+            string val;
+
+            val = sr.ReadLine();
+            if (val == "Ciagly") Rodzaj = Types.Ciagly;
+            else Rodzaj = Types.Dyskretny;
+
+            CzyAmplituda= bool.Parse( sr.ReadLine());
+            CzyCzestotliwosc = bool.Parse(sr.ReadLine());
+            CzyczasPoczatkowy = bool.Parse(sr.ReadLine());
+            CzyCzasTrwaniaSygnalu = bool.Parse(sr.ReadLine());
+            CzyOkresSygnalu = bool.Parse(sr.ReadLine());
+            CzySkokCzasowy = bool.Parse(sr.ReadLine());
+            CzyWspolczynnikWypelnienia = bool.Parse(sr.ReadLine());
+            CzyNrPierwszejProbki = bool.Parse(sr.ReadLine());
+            CzyNrProbki = bool.Parse(sr.ReadLine());
+            CzyPrawdopodobienstwoA = bool.Parse(sr.ReadLine());
+
+            Nazwa = sr.ReadLine();
+            Amplituda = Double.Parse(sr.ReadLine());
+            CzasPoczatkowy = Double.Parse(sr.ReadLine());
+            CzasTrwaniaSygnalu = Double.Parse(sr.ReadLine());
+            OkresPodstawowy = Double.Parse(sr.ReadLine());
+            WspolczynnikWypelnienia = Double.Parse(sr.ReadLine());
+            PoczatekSygnalu = Double.Parse(sr.ReadLine());
+            CzestotliwoscProbkowania = Double.Parse(sr.ReadLine());
+            SkokCzasowy = Double.Parse(sr.ReadLine());
+            NrPierwszejProbki = Double.Parse(sr.ReadLine());
+            NrProbki = Double.Parse(sr.ReadLine());
+            PrawopodobienstwoA = Double.Parse(sr.ReadLine());
+
+            int points = int.Parse(sr.ReadLine());
+            PointList = new List<Point>();
+            ;
+            for(int i =0; i < points; i++)
+            {
+                val = sr.ReadLine();
+                string[] point = val.Split(' ');
+                PointList.Add(new Point(Double.Parse(point[0]), Double.Parse(point[1])));
+
+            }
+            
+
+
+
+
+
+
         }
         public void GenerateSignal()
         {
