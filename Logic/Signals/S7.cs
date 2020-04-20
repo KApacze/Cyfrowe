@@ -33,7 +33,7 @@ namespace Cyfrowe.Logic.Signals
             if (k <= (t - kw * T) / T + t1)
                 val = A;
             else val = -A;
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }

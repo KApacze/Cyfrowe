@@ -27,7 +27,7 @@ namespace Cyfrowe.Logic.Signals
                     (_rand.NextDouble() * (A + A) - A) +
                     (_rand.NextDouble() * (A + A) - A);
 
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }

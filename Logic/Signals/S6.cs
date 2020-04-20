@@ -34,7 +34,7 @@ namespace Cyfrowe.Logic.Signals
             if (k <= (t - kw * T) /T + t1)
                 val = A;
             else val = 0;
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }

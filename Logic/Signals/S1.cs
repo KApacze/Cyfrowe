@@ -27,7 +27,7 @@ namespace Cyfrowe.Logic.Signals
             double Amin = - this.Amplituda;
             //random.NextDouble() * (maximum - minimum) + minimum
             double A = _rand.NextDouble() *(Amax - Amin) + Amin;
-            return A;
+            return Math.Round(A,2);
         }
     }
 }

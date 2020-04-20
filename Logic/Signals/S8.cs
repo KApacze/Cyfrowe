@@ -35,7 +35,7 @@ namespace Cyfrowe.Logic.Signals
                 val = A / (kw * T) * (t - k * T - t1);
             else
                  val = -A / (T * (1 - kw)) * (t - k * T - t1) + A / (1 - kw);
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Cyfrowe.Logic.Signals
                 val = A;
             else val = 0;
 
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }

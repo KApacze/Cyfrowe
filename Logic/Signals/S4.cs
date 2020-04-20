@@ -30,7 +30,7 @@ namespace Cyfrowe.Logic.Signals
             val += Math.Abs(Math.Sin((2 * Math.PI / T) * (t - t1)));
             val = 0.5 * A * val;
         
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }

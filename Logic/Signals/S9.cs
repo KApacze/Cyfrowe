@@ -37,7 +37,7 @@ namespace Cyfrowe.Logic.Signals
             else
                 val = 0;
 
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }

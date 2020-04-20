@@ -30,7 +30,7 @@ namespace Cyfrowe.Logic.Signals
             if (_rand.Next(0, 100) <= p)
                 val = A;
             else val = 0;
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }

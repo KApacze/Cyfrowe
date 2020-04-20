@@ -117,7 +117,7 @@ namespace Cyfrowe.Logic
             PointList = new List<Point>();
             if (this.Rodzaj.Equals(Types.Ciagly))
             {
-                for (double i = CzasPoczatkowy; i <= CzasPoczatkowy + CzasTrwaniaSygnalu; i += 1 / CzestotliwoscProbkowania)
+                for (double i = CzasPoczatkowy; i <= CzasPoczatkowy + CzasTrwaniaSygnalu; i += Math.Round(1 / CzestotliwoscProbkowania, 2))
                     PointList.Add(new Point(i, ValueAtTime(i)));
 
             }
@@ -143,7 +143,7 @@ namespace Cyfrowe.Logic
             {
                 average = (double)1.0 / (PointList[PointList.Count - 1].X - PointList[0].X + 1) * sum;
             }
-            return average;
+            return Math.Round(average,2);
         }
 
         public double CalculateSredniaWartoscBezwzgledna()
@@ -158,7 +158,7 @@ namespace Cyfrowe.Logic
             } else 
                      average = 1.0 / (PointList[PointList.Count - 1].X - PointList[0].X + 1) * sum; ;
 
-            return average;
+            return Math.Round(average,2);
         }
        
         public double CalculateWariacje()
@@ -175,7 +175,7 @@ namespace Cyfrowe.Logic
                               - PointList[0].X * CzestotliwoscProbkowania + 1) * sum;
             } else
                  variance =  1.0 / (PointList[PointList.Count - 1].X - PointList[0].X + 1) * sum;
-            return variance;
+            return Math.Round(variance,2);
         }
 
         public double CalculateMocSrednia()
@@ -191,7 +191,7 @@ namespace Cyfrowe.Logic
             else
                 average = 1.0 / (PointList[PointList.Count - 1].X - PointList[0].X + 1) * sum;
 
-            return average;
+            return Math.Round(average,2);
         }
      
 
@@ -199,7 +199,7 @@ namespace Cyfrowe.Logic
         {
             double average = CalculateMocSrednia();
 
-            return Math.Sqrt(average);
+            return Math.Round(Math.Sqrt(average));
         }
 
     }

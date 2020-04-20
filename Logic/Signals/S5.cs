@@ -27,7 +27,7 @@ namespace Cyfrowe.Logic.Signals
             double T = this.OkresPodstawowy;
             double t1 = this.CzasPoczatkowy;
             double val = A * Math.Abs(Math.Sin((2 * Math.PI / T) * (t - t1)));                 
-            return val;
+            return Math.Round(val, 2);
         }
     }
 }
