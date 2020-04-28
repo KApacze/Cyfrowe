@@ -114,6 +114,10 @@ namespace Cyfrowe
             this.Plot = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.R1Button = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.CzestotliowscR1Input = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -126,6 +130,7 @@ namespace Cyfrowe
             this.TabController.SuspendLayout();
             this.ObliczeniaTab.SuspendLayout();
             this.ACTab.SuspendLayout();
+            this.CATab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -711,6 +716,7 @@ namespace Cyfrowe
             this.TabController.SelectedIndex = 0;
             this.TabController.Size = new System.Drawing.Size(260, 292);
             this.TabController.TabIndex = 0;
+            this.TabController.SelectedIndexChanged += new System.EventHandler(this.TabController_SelectedIndexChanged);
             // 
             // ObliczeniaTab
             // 
@@ -904,6 +910,7 @@ namespace Cyfrowe
             this.SamplingFreq.Size = new System.Drawing.Size(135, 13);
             this.SamplingFreq.TabIndex = 3;
             this.SamplingFreq.Text = "Częstotliwość próbkowania";
+            this.SamplingFreq.Click += new System.EventHandler(this.SamplingFreq_Click);
             // 
             // SamplingFreqInput
             // 
@@ -911,9 +918,14 @@ namespace Cyfrowe
             this.SamplingFreqInput.Name = "SamplingFreqInput";
             this.SamplingFreqInput.Size = new System.Drawing.Size(92, 20);
             this.SamplingFreqInput.TabIndex = 4;
+            this.SamplingFreqInput.TextChanged += new System.EventHandler(this.SamplingFreqInput_TextChanged);
             // 
             // CATab
             // 
+            this.CATab.Controls.Add(this.R1Button);
+            this.CATab.Controls.Add(this.label3);
+            this.CATab.Controls.Add(this.label6);
+            this.CATab.Controls.Add(this.CzestotliowscR1Input);
             this.CATab.Location = new System.Drawing.Point(4, 22);
             this.CATab.Name = "CATab";
             this.CATab.Padding = new System.Windows.Forms.Padding(3);
@@ -976,6 +988,41 @@ namespace Cyfrowe
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // R1Button
+            // 
+            this.R1Button.Location = new System.Drawing.Point(73, 45);
+            this.R1Button.Name = "R1Button";
+            this.R1Button.Size = new System.Drawing.Size(90, 23);
+            this.R1Button.TabIndex = 12;
+            this.R1Button.Text = "Rekonstruuj";
+            this.R1Button.UseVisualStyleBackColor = true;
+            this.R1Button.Click += new System.EventHandler(this.R1Button_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(60, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(149, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Ekstrapolacja zerowego rzędu";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Częstotliwość próbkowania";
+            // 
+            // CzestotliowscR1Input
+            // 
+            this.CzestotliowscR1Input.Location = new System.Drawing.Point(154, 19);
+            this.CzestotliowscR1Input.Name = "CzestotliowscR1Input";
+            this.CzestotliowscR1Input.Size = new System.Drawing.Size(92, 20);
+            this.CzestotliowscR1Input.TabIndex = 10;
+            // 
             // CPS
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -1002,6 +1049,8 @@ namespace Cyfrowe
             this.ObliczeniaTab.PerformLayout();
             this.ACTab.ResumeLayout(false);
             this.ACTab.PerformLayout();
+            this.CATab.ResumeLayout(false);
+            this.CATab.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1093,6 +1142,10 @@ namespace Cyfrowe
         private System.Windows.Forms.TextBox CzestotliwoscProbkowania2Input;
         private System.Windows.Forms.Button SamplingButton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button R1Button;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox CzestotliowscR1Input;
     }
 }
 

@@ -54,6 +54,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\Conversions\Q2.cs" />
+    <Compile Include="Logic\Conversions\R1.cs" />
     <Compile Include="Logic\Conversions\S1.cs" />
     <Compile Include="Logic\Operations\Add.cs" />
     <Compile Include="Logic\Operations\Divide.cs" />

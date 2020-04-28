@@ -36,6 +36,8 @@ namespace Cyfrowe
              };
         private Signal CurrentSignal;
         private Signal SecondarySignal;
+        private Signal SampledSignal;
+        private Signal ReconstructedSignal;
         public CPS()
         {
             InitializeComponent();
@@ -497,6 +499,10 @@ namespace Cyfrowe
             series.ChartType = SeriesChartType.Point;
             foreach (Point point in signal.PointList)
                 series.Points.AddXY(point.X, point.Y);
+
+            SampledSignal = signal;
+
+
         }
 
         private void textBox11_TextChanged(object sender, EventArgs e)
@@ -511,6 +517,40 @@ namespace Cyfrowe
             AddACToPlot(signal);
             Plot.Series[1].ChartType = SeriesChartType.Line;
         }
+
+        private void TabController_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SamplingFreq_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SamplingFreqInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void R1Button_Click(object sender, EventArgs e)
+        {
+            double f = Double.Parse(this.CzestotliowscR1Input.Text);
+            Signal signal = Logic.Conversions.R1.ExtrapolaciaZerowegoRzedu(SampledSignal, f);
+            AddCAToPlot(signal);
+            
+        }
+        private void AddCAToPlot(Signal signal)
+        {
+            if (Plot.Series.Count > 2) Plot.Series.RemoveAt(2);
+            Series series = this.Plot.Series.Add("C/A");
+            series.ChartType = SeriesChartType.Line;
+            foreach (Point point in signal.PointList)
+                series.Points.AddXY(point.X, point.Y);
+
+            ReconstructedSignal = signal;
+        }
+
     }
         
 }
