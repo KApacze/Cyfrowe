@@ -503,6 +503,14 @@ namespace Cyfrowe
         {
 
         }
+
+        private void AC2Button_Click(object sender, EventArgs e)
+        {
+            double f = Double.Parse(this.CzestotliwoscProbkowania2Input.Text);
+            Signal signal = Logic.Conversions.Q2.KwantyzacjaRownomierna(CurrentSignal, f);
+            AddACToPlot(signal);
+            Plot.Series[1].ChartType = SeriesChartType.Line;
+        }
     }
         
 }

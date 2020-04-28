@@ -101,12 +101,10 @@ namespace Cyfrowe
             this.WartoscSredniaBezwzglednaOutpu = new System.Windows.Forms.Label();
             this.WartoscSredniaBezwzgledna = new System.Windows.Forms.Label();
             this.ACTab = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.AC2Button = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.CzestotliwoscProbkowania2Input = new System.Windows.Forms.TextBox();
             this.SamplingButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SamplingFreq = new System.Windows.Forms.Label();
@@ -826,12 +824,10 @@ namespace Cyfrowe
             // 
             // ACTab
             // 
-            this.ACTab.Controls.Add(this.button1);
-            this.ACTab.Controls.Add(this.label6);
-            this.ACTab.Controls.Add(this.textBox2);
+            this.ACTab.Controls.Add(this.AC2Button);
             this.ACTab.Controls.Add(this.label13);
             this.ACTab.Controls.Add(this.label14);
-            this.ACTab.Controls.Add(this.textBox12);
+            this.ACTab.Controls.Add(this.CzestotliwoscProbkowania2Input);
             this.ACTab.Controls.Add(this.SamplingButton);
             this.ACTab.Controls.Add(this.label2);
             this.ACTab.Controls.Add(this.SamplingFreq);
@@ -844,35 +840,20 @@ namespace Cyfrowe
             this.ACTab.Text = "A/C";
             this.ACTab.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // AC2Button
             // 
-            this.button1.Location = new System.Drawing.Point(73, 162);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Konwertuj";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 139);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(135, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Częstotliwość próbkowania";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(154, 136);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(92, 20);
-            this.textBox2.TabIndex = 13;
+            this.AC2Button.Location = new System.Drawing.Point(73, 139);
+            this.AC2Button.Name = "AC2Button";
+            this.AC2Button.Size = new System.Drawing.Size(90, 23);
+            this.AC2Button.TabIndex = 14;
+            this.AC2Button.Text = "Konwertuj";
+            this.AC2Button.UseVisualStyleBackColor = true;
+            this.AC2Button.Click += new System.EventHandler(this.AC2Button_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(25, 72);
+            this.label13.Location = new System.Drawing.Point(25, 97);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(212, 13);
             this.label13.TabIndex = 11;
@@ -888,12 +869,12 @@ namespace Cyfrowe
             this.label14.Text = "Częstotliwość próbkowania";
             this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
-            // textBox12
+            // CzestotliwoscProbkowania2Input
             // 
-            this.textBox12.Location = new System.Drawing.Point(154, 113);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(92, 20);
-            this.textBox12.TabIndex = 10;
+            this.CzestotliwoscProbkowania2Input.Location = new System.Drawing.Point(154, 113);
+            this.CzestotliwoscProbkowania2Input.Name = "CzestotliwoscProbkowania2Input";
+            this.CzestotliwoscProbkowania2Input.Size = new System.Drawing.Size(92, 20);
+            this.CzestotliwoscProbkowania2Input.TabIndex = 10;
             // 
             // SamplingButton
             // 
@@ -969,7 +950,7 @@ namespace Cyfrowe
             series1.ChartArea = "ChartArea1";
             series1.Name = "Series1";
             this.Plot.Series.Add(series1);
-            this.Plot.Size = new System.Drawing.Size(522, 274);
+            this.Plot.Size = new System.Drawing.Size(608, 324);
             this.Plot.TabIndex = 0;
             this.Plot.Text = " ";
             this.Plot.Click += new System.EventHandler(this.Plot_Click);
@@ -985,7 +966,7 @@ namespace Cyfrowe
             series2.ChartArea = "ChartArea1";
             series2.Name = "Series1";
             this.Histogram.Series.Add(series2);
-            this.Histogram.Size = new System.Drawing.Size(526, 304);
+            this.Histogram.Size = new System.Drawing.Size(612, 363);
             this.Histogram.TabIndex = 0;
             this.Histogram.Text = "chart2";
             // 
@@ -1106,12 +1087,10 @@ namespace Cyfrowe
         private System.Windows.Forms.TextBox SamplingFreqInput;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TabPage CATab;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button AC2Button;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox CzestotliwoscProbkowania2Input;
         private System.Windows.Forms.Button SamplingButton;
         private System.Windows.Forms.Label label2;
     }
