@@ -15,40 +15,35 @@ namespace Cyfrowe.Logic.Operations
             List<Point> secondList = s2.PointList;
             if (s1.CzestotliwoscProbkowania == s2.CzestotliwoscProbkowania)
             {
+
                 if (s1.PointList.Count >= s2.PointList.Count)
                 {
+
+                    int index = firstList.FindIndex(x => x.X == secondList[0].X);
                     foreach (Point point in secondList)
                     {
-                        for (int i = 0; i < firstList.Count - 1; i++)
-                        {
-                            if (point.X > firstList[i].X && point.X < firstList[i + 1].X)
-                            {
-                                firstList[i].Y /= point.Y;
-                                break;
-                            }
+                        if(point.Y == 0.0) firstList[index].Y = point.Y;
 
-                        }
-
+                        firstList[index].Y /= point.Y;
+                        index++;
                     }
                     output.PointList = firstList;
                 }
-                else
-                {
-                    foreach (Point point in firstList)
-                    {
-                        for (int i = 0; i < secondList.Count - 1; i++)
-                        {
-                            if (point.X > secondList[i].X && point.X < secondList[i + 1].X)
-                            {
-                                secondList[(int)point.X].Y /= point.Y;
-                                break;
-                            }
 
-                        }
-                    }
-                    output.PointList = secondList;
-                }
             }
+            else
+            {
+                int index = secondList.FindIndex(x => x.X == firstList[0].X);
+                foreach (Point point in firstList)
+                {
+                    if (point.Y == 0.0) secondList[index].Y = point.Y;
+
+                    secondList[index].Y /= point.Y;
+                    index++;
+                }
+                output.PointList = secondList;
+            }
+        
             
               return output;
         }  

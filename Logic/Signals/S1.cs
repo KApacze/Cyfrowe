@@ -10,7 +10,6 @@ namespace Cyfrowe.Logic.Signals
     class S1 : Signal
     {
         private readonly Random _rand = new Random();
-
         public S1()
         {
             Nazwa = "Szum o rozkladzie jednostajnym";
@@ -25,7 +24,6 @@ namespace Cyfrowe.Logic.Signals
         {
             double Amax = this.Amplituda;
             double Amin = - this.Amplituda;
-            //random.NextDouble() * (maximum - minimum) + minimum
             double A = _rand.NextDouble() *(Amax - Amin) + Amin;
             return Math.Round(A,2);
         }

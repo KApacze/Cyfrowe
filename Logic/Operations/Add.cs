@@ -18,38 +18,61 @@ namespace Cyfrowe.Logic.Operations
             {
                 if (s1.PointList.Count >= s2.PointList.Count)
                 {
+                    int index = firstList.FindIndex(x => x.X == secondList[0].X);
                     foreach (Point point in secondList)
                     {
-                        for(int i = 0; i< firstList.Count-1; i++ )
-                        {
-                            if(point.X > firstList[i].X && point.X < firstList[i+1].X)
-                            {
-                                firstList[i].Y += point.Y;
-                                break;
-                            }
-                           
-                        }
-                        
+                       // int index = firstList.FindIndex(x => x.X == point.X);
+
+                        firstList[index].Y += point.Y;
+                        index++;
                     }
                     output.PointList = firstList;
                 }
+                //    if (s1.PointList.Count >= s2.PointList.Count)
+                //    {
+                //        foreach (Point point in secondList)
+                //        {
+                //            for(int i = 0; i< firstList.Count-1; i++ )
+                //            {
+                //                if(point.X > firstList[i].X && point.X < firstList[i+1].X)
+                //                {
+                //                    firstList[i].Y += point.Y;
+                //                    break;
+                //                }
+
+                //            }
+
+                //        }
+                //        output.PointList = firstList;
+            }
                 else
                 {
-                    foreach (Point point in firstList)
-                    {
-                        for (int i = 0; i < secondList.Count - 1; i++)
-                        {
-                            if (point.X > secondList[i].X && point.X < secondList[i + 1].X)
-                            {
-                                secondList[(int)point.X].Y += point.Y;
-                                break;
-                            }
-
-                        }
+                int index = secondList.FindIndex(x => x.X == firstList[0].X);
+                foreach (Point point in firstList)
+                { 
+                        secondList[index].Y += point.Y;
+                        index++;
                     }
                     output.PointList = secondList;
                 }
-            }
+                //foreach (Point point in firstList)
+                //{
+                //    for (int i = 0; i < secondList.Count - 1; i++)
+                //    {
+                //        if (point.X > secondList[i].X && point.X < secondList[i + 1].X)
+                //        {
+                //            secondList[i].Y += point.Y;
+                //            break;
+                //        }
+
+                //    }
+                //}
+                //output.PointList = secondList;
+                //}
+            //}
+
+
+           
 
             return output;
         }

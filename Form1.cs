@@ -164,7 +164,7 @@ namespace Cyfrowe
 
             foreach (Point point in signal.PointList)
                 series.Points.AddXY(point.X, point.Y);
-
+            Plot.ChartAreas[0].RecalculateAxesScale();
 
         }
 
@@ -173,7 +173,7 @@ namespace Cyfrowe
                 //Drawing Histogram
                 this.Histogram.Series.Clear();
                 this.Histogram.Titles.Clear();
-                this.Histogram.Titles.Add(signal.Nazwa);
+                this.Histogram.Titles.Add(signal.Nazwa + " - histogram");
                  int size;
                  if (string.IsNullOrEmpty(this.HistogramSelect.SelectedItem.ToString())) { 
                 size = 5;
@@ -216,16 +216,16 @@ namespace Cyfrowe
 
                 for (int i = 0; i < size; i++)
                 {
-                    HSeries.Points.AddXY(Math.Round(value[i], 2) + size / 4, values[i]);
+                    HSeries.Points.AddXY(Math.Round(value[i], 2), values[i]);
                 }
-                this.Histogram.ChartAreas[0].AxisY.Maximum = values.Max(r => r);
-                this.Histogram.ChartAreas[0].AxisX.Maximum = value.Max(r => r) + size;
-                this.Histogram.ChartAreas[0].AxisX.Minimum = value.Min(r => r);
+                //this.Histogram.ChartAreas[0].AxisY.Maximum = values.Max(r => r);
+               // this.Histogram.ChartAreas[0].AxisX.Maximum = value.Max(r => r) + size;
+                //this.Histogram.ChartAreas[0].AxisX.Minimum = value.Min(r => r);
 
 
                 foreach (Series s in Histogram.Series)
                     s.CustomProperties = "PointWidth = 1";
-
+            Histogram.ChartAreas[0].RecalculateAxesScale();
             }
         
 
@@ -470,6 +470,38 @@ namespace Cyfrowe
                 CurrentSignal = signal;
 
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SamplingButton_Click(object sender, EventArgs e)
+        {
+      
+            Signal signal= Logic.Conversions.S1.ProbkowanieRownomierne(CurrentSignal, Double.Parse(this.SamplingFreqInput.Text));
+            AddACToPlot(signal);
+ 
+        }
+
+        private void AddACToPlot(Signal signal)
+        {
+            if (Plot.Series.Count > 1) Plot.Series.RemoveAt(1);
+            Series series = this.Plot.Series.Add("A/C");
+            series.ChartType = SeriesChartType.Point;
+            foreach (Point point in signal.PointList)
+                series.Points.AddXY(point.X, point.Y);
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
         

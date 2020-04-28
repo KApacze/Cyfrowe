@@ -49,14 +49,7 @@ namespace Cyfrowe.Logic
         public Signal() 
         {
             CzyCzestotliwosc = true;
-            //Amplituda = 5.0;
-            //CzasPoczatkowy = 0.0;
-            //CzasTrwaniaSygnalu = 10.0;
-            //SkokCzasowy = 2.0;
-            //WspolczynnikWypelnienia = 1.0;
-            //PoczatekSygnalu = 0.0;
-            //OkresPodstawowy = 2.0;
-            //CzestotliwoscProbkowania = 100;
+            
 
             GenerateSignal();    
         }

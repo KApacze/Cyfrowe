@@ -13,6 +13,12 @@ namespace Cyfrowe.Logic.Signals
         {
 
         }
+
+        public Imported(Signal signal)
+        {
+            this.Rodzaj = signal.Rodzaj;
+            this.PointList = signal.PointList;
+        }
         protected override double ValueAtTime(double t)
         {
             return 0;
