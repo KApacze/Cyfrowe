@@ -27,7 +27,7 @@ namespace Cyfrowe.Logic.Conversions
         }
 
 
-        private double FunkcjaProstokatna(double t)
+        private static double FunkcjaProstokatna(double t)
         {
             if (Math.Abs(t) > 0.5) return 0;
             else if (Math.Abs(t) == 0.5) return 0.5;

@@ -495,6 +495,7 @@ namespace Cyfrowe
         private void AddACToPlot(Signal signal)
         {
             if (Plot.Series.Count > 1) Plot.Series.RemoveAt(1);
+            if (Plot.Series.Count > 1) Plot.Series.RemoveAt(1);
             Series series = this.Plot.Series.Add("A/C");
             series.ChartType = SeriesChartType.Point;
             foreach (Point point in signal.PointList)
@@ -551,6 +552,13 @@ namespace Cyfrowe
             ReconstructedSignal = signal;
         }
 
+        private void R2Button_Click(object sender, EventArgs e)
+        {
+            double f = Double.Parse(this.CzestotliwoscR2Input.Text);
+           // Signal signal = Logic.Conversions.R2.InterpolacjaPierwszegoRzedu(SampledSignal, f);
+            //TODO
+            AddCAToPlot(SampledSignal);
+        }
     }
         
 }
