@@ -32,10 +32,10 @@ namespace Cyfrowe
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,22 +110,22 @@ namespace Cyfrowe
             this.SamplingFreq = new System.Windows.Forms.Label();
             this.SamplingFreqInput = new System.Windows.Forms.TextBox();
             this.CATab = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.Plot = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.R1Button = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.CzestotliowscR1Input = new System.Windows.Forms.TextBox();
-            this.R2Button = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.CzestotliwoscR2Input = new System.Windows.Forms.TextBox();
             this.R3Button = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.CzestotliwoscR3Input = new System.Windows.Forms.TextBox();
+            this.R2Button = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.CzestotliwoscR2Input = new System.Windows.Forms.TextBox();
+            this.R1Button = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.CzestotliowscR1Input = new System.Windows.Forms.TextBox();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.Plot = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -950,94 +950,40 @@ namespace Cyfrowe
             this.CATab.Text = "C/A";
             this.CATab.UseVisualStyleBackColor = true;
             // 
-            // splitContainer2
+            // R3Button
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.R3Button.Location = new System.Drawing.Point(70, 219);
+            this.R3Button.Name = "R3Button";
+            this.R3Button.Size = new System.Drawing.Size(90, 23);
+            this.R3Button.TabIndex = 20;
+            this.R3Button.Text = "Rekonstruuj";
+            this.R3Button.UseVisualStyleBackColor = true;
+            this.R3Button.Click += new System.EventHandler(this.R3Button_Click);
             // 
-            // splitContainer2.Panel1
+            // label17
             // 
-            this.splitContainer2.Panel1.AutoScroll = true;
-            this.splitContainer2.Panel1.Controls.Add(this.Plot);
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(57, 177);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(197, 13);
+            this.label17.TabIndex = 19;
+            this.label17.Text = " Rekonstrukcja w oparciu o funkcję sinc";
             // 
-            // splitContainer2.Panel2
+            // label18
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.Histogram);
-            this.splitContainer2.Size = new System.Drawing.Size(617, 698);
-            this.splitContainer2.SplitterDistance = 330;
-            this.splitContainer2.TabIndex = 0;
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(3, 196);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(135, 13);
+            this.label18.TabIndex = 17;
+            this.label18.Text = "Częstotliwość próbkowania";
             // 
-            // Plot
+            // CzestotliwoscR3Input
             // 
-            chartArea3.Name = "ChartArea1";
-            this.Plot.ChartAreas.Add(chartArea3);
-            this.Plot.Location = new System.Drawing.Point(6, 3);
-            this.Plot.Name = "Plot";
-            series3.ChartArea = "ChartArea1";
-            series3.Name = "Series1";
-            this.Plot.Series.Add(series3);
-            this.Plot.Size = new System.Drawing.Size(608, 324);
-            this.Plot.TabIndex = 0;
-            this.Plot.Text = " ";
-            this.Plot.Click += new System.EventHandler(this.Plot_Click);
-            // 
-            // Histogram
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.Histogram.ChartAreas.Add(chartArea4);
-            this.Histogram.Location = new System.Drawing.Point(2, 1);
-            this.Histogram.Margin = new System.Windows.Forms.Padding(0);
-            this.Histogram.Name = "Histogram";
-            this.Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series4.ChartArea = "ChartArea1";
-            series4.Name = "Series1";
-            this.Histogram.Series.Add(series4);
-            this.Histogram.Size = new System.Drawing.Size(612, 363);
-            this.Histogram.TabIndex = 0;
-            this.Histogram.Text = "chart2";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // R1Button
-            // 
-            this.R1Button.Location = new System.Drawing.Point(73, 45);
-            this.R1Button.Name = "R1Button";
-            this.R1Button.Size = new System.Drawing.Size(90, 23);
-            this.R1Button.TabIndex = 12;
-            this.R1Button.Text = "Rekonstruuj";
-            this.R1Button.UseVisualStyleBackColor = true;
-            this.R1Button.Click += new System.EventHandler(this.R1Button_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(60, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Ekstrapolacja zerowego rzędu";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(135, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Częstotliwość próbkowania";
-            // 
-            // CzestotliowscR1Input
-            // 
-            this.CzestotliowscR1Input.Location = new System.Drawing.Point(154, 19);
-            this.CzestotliowscR1Input.Name = "CzestotliowscR1Input";
-            this.CzestotliowscR1Input.Size = new System.Drawing.Size(92, 20);
-            this.CzestotliowscR1Input.TabIndex = 10;
+            this.CzestotliwoscR3Input.Location = new System.Drawing.Point(151, 193);
+            this.CzestotliwoscR3Input.Name = "CzestotliwoscR3Input";
+            this.CzestotliwoscR3Input.Size = new System.Drawing.Size(92, 20);
+            this.CzestotliwoscR3Input.TabIndex = 18;
             // 
             // R2Button
             // 
@@ -1074,39 +1020,94 @@ namespace Cyfrowe
             this.CzestotliwoscR2Input.Size = new System.Drawing.Size(92, 20);
             this.CzestotliwoscR2Input.TabIndex = 14;
             // 
-            // R3Button
+            // R1Button
             // 
-            this.R3Button.Location = new System.Drawing.Point(70, 219);
-            this.R3Button.Name = "R3Button";
-            this.R3Button.Size = new System.Drawing.Size(90, 23);
-            this.R3Button.TabIndex = 20;
-            this.R3Button.Text = "Rekonstruuj";
-            this.R3Button.UseVisualStyleBackColor = true;
+            this.R1Button.Location = new System.Drawing.Point(73, 45);
+            this.R1Button.Name = "R1Button";
+            this.R1Button.Size = new System.Drawing.Size(90, 23);
+            this.R1Button.TabIndex = 12;
+            this.R1Button.Text = "Rekonstruuj";
+            this.R1Button.UseVisualStyleBackColor = true;
+            this.R1Button.Click += new System.EventHandler(this.R1Button_Click);
             // 
-            // label17
+            // label3
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(57, 177);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(197, 13);
-            this.label17.TabIndex = 19;
-            this.label17.Text = " Rekonstrukcja w oparciu o funkcję sinc";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(60, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(149, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Ekstrapolacja zerowego rzędu";
             // 
-            // label18
+            // label6
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(3, 196);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(135, 13);
-            this.label18.TabIndex = 17;
-            this.label18.Text = "Częstotliwość próbkowania";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Częstotliwość próbkowania";
             // 
-            // CzestotliwoscR3Input
+            // CzestotliowscR1Input
             // 
-            this.CzestotliwoscR3Input.Location = new System.Drawing.Point(151, 193);
-            this.CzestotliwoscR3Input.Name = "CzestotliwoscR3Input";
-            this.CzestotliwoscR3Input.Size = new System.Drawing.Size(92, 20);
-            this.CzestotliwoscR3Input.TabIndex = 18;
+            this.CzestotliowscR1Input.Location = new System.Drawing.Point(154, 19);
+            this.CzestotliowscR1Input.Name = "CzestotliowscR1Input";
+            this.CzestotliowscR1Input.Size = new System.Drawing.Size(92, 20);
+            this.CzestotliowscR1Input.TabIndex = 10;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.AutoScroll = true;
+            this.splitContainer2.Panel1.Controls.Add(this.Plot);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.Histogram);
+            this.splitContainer2.Size = new System.Drawing.Size(617, 698);
+            this.splitContainer2.SplitterDistance = 330;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // Plot
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.Plot.ChartAreas.Add(chartArea1);
+            this.Plot.Location = new System.Drawing.Point(6, 3);
+            this.Plot.Name = "Plot";
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.Plot.Series.Add(series1);
+            this.Plot.Size = new System.Drawing.Size(608, 324);
+            this.Plot.TabIndex = 0;
+            this.Plot.Text = " ";
+            this.Plot.Click += new System.EventHandler(this.Plot_Click);
+            // 
+            // Histogram
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.Histogram.ChartAreas.Add(chartArea2);
+            this.Histogram.Location = new System.Drawing.Point(2, 1);
+            this.Histogram.Margin = new System.Windows.Forms.Padding(0);
+            this.Histogram.Name = "Histogram";
+            this.Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "Series1";
+            this.Histogram.Series.Add(series2);
+            this.Histogram.Size = new System.Drawing.Size(612, 363);
+            this.Histogram.TabIndex = 0;
+            this.Histogram.Text = "chart2";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // CPS
             // 

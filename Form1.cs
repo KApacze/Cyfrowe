@@ -559,6 +559,13 @@ namespace Cyfrowe
             //TODO
             AddCAToPlot(SampledSignal);
         }
+
+        private void R3Button_Click(object sender, EventArgs e)
+        {
+            double f = Double.Parse(this.CzestotliwoscR3Input.Text);
+            Signal signal = Logic.Conversions.R3.RekonstrukcjaWOparciuOSinc(SampledSignal, f);
+            AddCAToPlot(signal);
+        }
     }
         
 }
