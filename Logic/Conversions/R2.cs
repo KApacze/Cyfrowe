@@ -10,17 +10,19 @@ namespace Cyfrowe.Logic.Conversions
     {
         public static Signal InterpolacjaPierwszegoRzedu(Signal signal, double frequency)
         {
-            Signal newSignal = signal;
+            Signal newSignal = (Signal)signal.CreateShallowCopy();
+            newSignal.CzestotliwoscProbkowania = frequency;
+            
             List<Point> points = new List<Point>();
             double step = 1 / frequency;
-            double baseSignalStep = newSignal.PointList[1].X - newSignal.PointList[0].X;
+            double baseSignalStep = signal.PointList[1].X - signal.PointList[0].X;
             //foreach (Point point in newSignal.PointList)
-            {for(int i =0; i != newSignal.PointList.Count-1; i++) {
-                    Point point = newSignal.PointList[i];
-                    Point nextPoint = newSignal.PointList[i];
+            {for(int i =0; i != signal.PointList.Count-1; i++) {
+                    Point point = signal.PointList[i];
+                    Point nextPoint = signal.PointList[i+1];
                     for (double d = point.X; d < nextPoint.X; d += step)
                     {
-                        double newY = point.Y + (newSignal.PointList[i+1].Y - point.Y) * funkcjaTrojkatna((point.X-d) / baseSignalStep);
+                        double newY = point.Y + (signal.PointList[i+1].Y - point.Y) * funkcjaTrojkatna((point.X-d) / baseSignalStep);
                         if (point.X == d) newY = point.Y;
                         if (nextPoint.X == d) continue;
                         points.Add(new Point(d, newY));
@@ -29,7 +31,7 @@ namespace Cyfrowe.Logic.Conversions
 
                
             }
-            points.Add(newSignal.PointList[newSignal.PointList.Count - 1]);
+            points.Add(signal.PointList[signal.PointList.Count - 1]);
             newSignal.PointList = points;
 
             return newSignal;

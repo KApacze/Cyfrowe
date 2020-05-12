@@ -539,7 +539,9 @@ namespace Cyfrowe
             double f = Double.Parse(this.CzestotliowscR1Input.Text);
             Signal signal = Logic.Conversions.R1.ExtrapolaciaZerowegoRzedu(SampledSignal, f);
             AddCAToPlot(signal);
-            
+            CalcDifference(CurrentSignal, signal,f);
+
+
         }
         private void AddCAToPlot(Signal signal)
         {
@@ -550,14 +552,17 @@ namespace Cyfrowe
                 series.Points.AddXY(point.X, point.Y);
 
             ReconstructedSignal = signal;
+
         }
 
         private void R2Button_Click(object sender, EventArgs e)
         {
             double f = Double.Parse(this.CzestotliwoscR2Input.Text);
-           // Signal signal = Logic.Conversions.R2.InterpolacjaPierwszegoRzedu(SampledSignal, f);
+            Signal signal = Logic.Conversions.R2.InterpolacjaPierwszegoRzedu(SampledSignal, f);
             //TODO
             AddCAToPlot(SampledSignal);
+            CalcDifference(CurrentSignal, signal, f);
+
         }
 
         private void R3Button_Click(object sender, EventArgs e)
@@ -565,6 +570,14 @@ namespace Cyfrowe
             double f = Double.Parse(this.CzestotliwoscR3Input.Text);
             Signal signal = Logic.Conversions.R3.RekonstrukcjaWOparciuOSinc(SampledSignal, f);
             AddCAToPlot(signal);
+            CalcDifference(CurrentSignal, signal, f);
+        }
+
+
+        private void CalcDifference(Signal originalSignal, Signal newSignal, double frequency) {
+            this.MSEOutput.Text = Logic.Conversions.Measures.CalculateMSE(originalSignal,newSignal,frequency).ToString() ;
+            this.SNROutput.Text = Logic.Conversions.Measures.CalculateSNR(originalSignal, newSignal, frequency).ToString();
+            this.MROutput.Text = Logic.Conversions.Measures.CalculateMD(originalSignal, newSignal, frequency).ToString();
         }
     }
         

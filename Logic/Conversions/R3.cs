@@ -12,7 +12,8 @@ namespace Cyfrowe.Logic.Conversions
         public static Signal RekonstrukcjaWOparciuOSinc(Signal signal, double frequency)
         {
 
-            Signal newSignal = signal;
+            Signal newSignal = (Signal)signal.CreateShallowCopy();
+            newSignal.CzestotliwoscProbkowania = frequency;
             List<Point> pointList = new List<Point>();
 
             double T = newSignal.PointList[1].X - newSignal.PointList[0].X;

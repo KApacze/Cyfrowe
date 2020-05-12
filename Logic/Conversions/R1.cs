@@ -10,14 +10,26 @@ namespace Cyfrowe.Logic.Conversions
     {
         public static Signal ExtrapolaciaZerowegoRzedu(Signal signal, double frequency)
         {
-            Signal newSignal = signal;
+            Signal newSignal = (Signal) signal.CreateShallowCopy();
+            newSignal.CzestotliwoscProbkowania = frequency;
             List<Point> points = new List<Point>();
             double step = 1 / frequency;
             double baseSignalStep = newSignal.PointList[1].X - newSignal.PointList[0].X;
-            foreach (Point point in newSignal.PointList)
-            { 
+            //foreach (Point point in newSignal.PointList)
+            //{ 
+            //    for (double d = point.X; d < point.X + baseSignalStep; d += step)
+            //    {
+            //        double t = (d - baseSignalStep / 2 - point.X) / baseSignalStep; 
+            //        points.Add(new Point(d, point.Y));
+            //    }
+            //}
+           for(int i = 0; i < newSignal.PointList.Count-1; i++)
+            {
+                Point point = newSignal.PointList[i];
+                double diff = newSignal.PointList[i+1].Y - point.Y;
                 for (double d = point.X; d < point.X + baseSignalStep; d += step)
                 {
+                    double t = (d - baseSignalStep / 2 - point.X) / baseSignalStep;
                     points.Add(new Point(d, point.Y));
                 }
             }

@@ -126,6 +126,12 @@ namespace Cyfrowe
             this.Plot = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label19 = new System.Windows.Forms.Label();
+            this.MSEOutput = new System.Windows.Forms.Label();
+            this.SNROutput = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.MROutput = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -193,7 +199,7 @@ namespace Cyfrowe
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(893, 698);
+            this.splitContainer1.Size = new System.Drawing.Size(893, 730);
             this.splitContainer1.SplitterDistance = 272;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -256,8 +262,8 @@ namespace Cyfrowe
             // Data.Panel2
             // 
             this.Data.Panel2.Controls.Add(this.TabController);
-            this.Data.Size = new System.Drawing.Size(272, 698);
-            this.Data.SplitterDistance = 387;
+            this.Data.Size = new System.Drawing.Size(272, 730);
+            this.Data.SplitterDistance = 404;
             this.Data.TabIndex = 0;
             // 
             // ObliczButton
@@ -670,6 +676,7 @@ namespace Cyfrowe
             this.CzestotliwoscInput.Size = new System.Drawing.Size(187, 20);
             this.CzestotliwoscInput.TabIndex = 2;
             this.CzestotliwoscInput.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
+            this.CzestotliwoscInput.Text = "100";
             // 
             // label12
             // 
@@ -889,6 +896,7 @@ namespace Cyfrowe
             this.CzestotliwoscProbkowania2Input.Name = "CzestotliwoscProbkowania2Input";
             this.CzestotliwoscProbkowania2Input.Size = new System.Drawing.Size(92, 20);
             this.CzestotliwoscProbkowania2Input.TabIndex = 10;
+            this.CzestotliwoscProbkowania2Input.Text = "5";
             // 
             // SamplingButton
             // 
@@ -926,7 +934,8 @@ namespace Cyfrowe
             this.SamplingFreqInput.Name = "SamplingFreqInput";
             this.SamplingFreqInput.Size = new System.Drawing.Size(92, 20);
             this.SamplingFreqInput.TabIndex = 4;
-            this.SamplingFreqInput.TextChanged += new System.EventHandler(this.SamplingFreqInput_TextChanged);
+            this.SamplingFreqInput.TextChanged += new System.EventHandler(this.SamplingFreqInput_TextChanged); 
+            this.SamplingFreqInput.Text = "5";
             // 
             // CATab
             // 
@@ -984,6 +993,7 @@ namespace Cyfrowe
             this.CzestotliwoscR3Input.Name = "CzestotliwoscR3Input";
             this.CzestotliwoscR3Input.Size = new System.Drawing.Size(92, 20);
             this.CzestotliwoscR3Input.TabIndex = 18;
+            this.CzestotliwoscR3Input.Text = "20";
             // 
             // R2Button
             // 
@@ -1019,6 +1029,7 @@ namespace Cyfrowe
             this.CzestotliwoscR2Input.Name = "CzestotliwoscR2Input";
             this.CzestotliwoscR2Input.Size = new System.Drawing.Size(92, 20);
             this.CzestotliwoscR2Input.TabIndex = 14;
+            this.CzestotliwoscR2Input.Text = "20";
             // 
             // R1Button
             // 
@@ -1065,13 +1076,19 @@ namespace Cyfrowe
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.AutoScroll = true;
+            this.splitContainer2.Panel1.Controls.Add(this.MROutput);
+            this.splitContainer2.Panel1.Controls.Add(this.label24);
+            this.splitContainer2.Panel1.Controls.Add(this.SNROutput);
+            this.splitContainer2.Panel1.Controls.Add(this.label22);
+            this.splitContainer2.Panel1.Controls.Add(this.MSEOutput);
+            this.splitContainer2.Panel1.Controls.Add(this.label19);
             this.splitContainer2.Panel1.Controls.Add(this.Plot);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.Histogram);
-            this.splitContainer2.Size = new System.Drawing.Size(617, 698);
-            this.splitContainer2.SplitterDistance = 330;
+            this.splitContainer2.Size = new System.Drawing.Size(617, 730);
+            this.splitContainer2.SplitterDistance = 366;
             this.splitContainer2.TabIndex = 0;
             // 
             // Plot
@@ -1109,12 +1126,66 @@ namespace Cyfrowe
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(195, 340);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(33, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "MSE:";
+            // 
+            // MSEOutput
+            // 
+            this.MSEOutput.AutoSize = true;
+            this.MSEOutput.Location = new System.Drawing.Point(234, 340);
+            this.MSEOutput.Name = "MSEOutput";
+            this.MSEOutput.Size = new System.Drawing.Size(13, 13);
+            this.MSEOutput.TabIndex = 2;
+            this.MSEOutput.Text = "0";
+            // 
+            // SNROutput
+            // 
+            this.SNROutput.AutoSize = true;
+            this.SNROutput.Location = new System.Drawing.Point(319, 340);
+            this.SNROutput.Name = "SNROutput";
+            this.SNROutput.Size = new System.Drawing.Size(13, 13);
+            this.SNROutput.TabIndex = 4;
+            this.SNROutput.Text = "0";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(280, 340);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(33, 13);
+            this.label22.TabIndex = 3;
+            this.label22.Text = "SNR:";
+            // 
+            // MROutput
+            // 
+            this.MROutput.AutoSize = true;
+            this.MROutput.Location = new System.Drawing.Point(408, 340);
+            this.MROutput.Name = "MROutput";
+            this.MROutput.Size = new System.Drawing.Size(13, 13);
+            this.MROutput.TabIndex = 6;
+            this.MROutput.Text = "0";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(369, 340);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(27, 13);
+            this.label24.TabIndex = 5;
+            this.label24.Text = "MR:";
+            // 
             // CPS
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 722);
+            this.ClientSize = new System.Drawing.Size(893, 754);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "CPS";
@@ -1138,6 +1209,7 @@ namespace Cyfrowe
             this.CATab.ResumeLayout(false);
             this.CATab.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
@@ -1240,6 +1312,12 @@ namespace Cyfrowe
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox CzestotliwoscR2Input;
+        private System.Windows.Forms.Label MROutput;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label SNROutput;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label MSEOutput;
+        private System.Windows.Forms.Label label19;
     }
 }
 

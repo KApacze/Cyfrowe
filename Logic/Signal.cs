@@ -97,13 +97,32 @@ namespace Cyfrowe.Logic
                 PointList.Add(new Point(Double.Parse(point[0]), Double.Parse(point[1])));
 
             }
-            
 
 
+        }
 
 
+        public object CreateShallowCopy()
+        {
+            return this.MemberwiseClone();
+        }
 
+        public void GenerateSignalFromList(List<Point> points)
+        {
+            PointList = new List<Point>();
+            if (this.Rodzaj.Equals(Types.Ciagly))
+            {
+                foreach(Point point in points)
+                    PointList.Add(new Point(point.X, ValueAtTime(point.X)));
 
+            }
+            else
+            {
+                if (NrProbki == 0) NrProbki = CzasTrwaniaSygnalu;
+                for (double i = NrPierwszejProbki; i <= NrPierwszejProbki + NrProbki; i++)
+
+                    PointList.Add(new Point(i, ValueAtTime(i)));
+            }
         }
         public void GenerateSignal()
         {

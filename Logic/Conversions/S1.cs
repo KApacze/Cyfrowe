@@ -10,13 +10,13 @@ namespace Cyfrowe.Logic.Conversions
     {
         public static Signal ProbkowanieRownomierne(Signal signal, double samplingFrequency)
         {
-            if(signal.Rodzaj == SignalTypes.Types.Ciagly)
+            Signal newSignal = (Signal)signal.CreateShallowCopy(); ; 
+            if (newSignal.Rodzaj == SignalTypes.Types.Ciagly)
             {
-                signal.CzestotliwoscProbkowania = samplingFrequency;
-                signal.GenerateSignal();
-                return signal;
+                newSignal.CzestotliwoscProbkowania = samplingFrequency;
+                newSignal.GenerateSignal();
+                return newSignal;
             }
-
 
             return null;
         }

@@ -10,7 +10,8 @@ namespace Cyfrowe.Logic.Conversions
     {
         public static Signal KwantyzacjaRownomierna(Signal signal, double czestotliwosc)
         {
-            if(signal.Rodzaj == SignalTypes.Types.Ciagly)
+            //Signal newSignal = (Signal)signal.CreateShallowCopy();
+            if (signal.Rodzaj == SignalTypes.Types.Ciagly)
             {
                 Signal temp = S1.ProbkowanieRownomierne(signal, czestotliwosc);
 
