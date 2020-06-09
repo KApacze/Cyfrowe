@@ -38,6 +38,7 @@ namespace Cyfrowe
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportujPróbkowanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -122,16 +123,26 @@ namespace Cyfrowe
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.CzestotliowscR1Input = new System.Windows.Forms.TextBox();
+            this.FilterTab = new System.Windows.Forms.TabPage();
+            this.FiltrButton = new System.Windows.Forms.Button();
+            this.OknoSelector = new System.Windows.Forms.ComboBox();
+            this.FiltrSelector = new System.Windows.Forms.ComboBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.MROutput = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.SNROutput = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.MSEOutput = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.Plot = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.label19 = new System.Windows.Forms.Label();
-            this.MSEOutput = new System.Windows.Forms.Label();
-            this.SNROutput = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.MROutput = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.F0Input = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.CzestotliwoscProbkowaniaInput = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.RzadOdcieciaInput = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -145,6 +156,7 @@ namespace Cyfrowe
             this.ObliczeniaTab.SuspendLayout();
             this.ACTab.SuspendLayout();
             this.CATab.SuspendLayout();
+            this.FilterTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -166,23 +178,32 @@ namespace Cyfrowe
             // plikToolStripMenuItem
             // 
             this.plikToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportujPróbkowanyToolStripMenuItem,
             this.importujToolStripMenuItem,
             this.exportujToolStripMenuItem});
             this.plikToolStripMenuItem.Name = "plikToolStripMenuItem";
             this.plikToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.plikToolStripMenuItem.Text = "Plik";
+            this.plikToolStripMenuItem.Click += new System.EventHandler(this.plikToolStripMenuItem_Click);
+            // 
+            // exportujPróbkowanyToolStripMenuItem
+            // 
+            this.exportujPróbkowanyToolStripMenuItem.Name = "exportujPróbkowanyToolStripMenuItem";
+            this.exportujPróbkowanyToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.exportujPróbkowanyToolStripMenuItem.Text = "Exportuj próbkowany";
+            this.exportujPróbkowanyToolStripMenuItem.Click += new System.EventHandler(this.exportujPróbkowanyToolStripMenuItem_Click);
             // 
             // importujToolStripMenuItem
             // 
             this.importujToolStripMenuItem.Name = "importujToolStripMenuItem";
-            this.importujToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.importujToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.importujToolStripMenuItem.Text = "Importuj";
             this.importujToolStripMenuItem.Click += new System.EventHandler(this.importujToolStripMenuItem_Click);
             // 
             // exportujToolStripMenuItem
             // 
             this.exportujToolStripMenuItem.Name = "exportujToolStripMenuItem";
-            this.exportujToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.exportujToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.exportujToolStripMenuItem.Text = "Exportuj";
             this.exportujToolStripMenuItem.Click += new System.EventHandler(this.exportujToolStripMenuItem_Click);
             // 
@@ -284,7 +305,8 @@ namespace Cyfrowe
             "Dodawanie",
             "Odejmowanie",
             "Mnożenie",
-            "Dzielenie"});
+            "Dzielenie",
+            "Splot dyskretny"});
             this.OperacjeSelect.Location = new System.Drawing.Point(5, 340);
             this.OperacjeSelect.Name = "OperacjeSelect";
             this.OperacjeSelect.Size = new System.Drawing.Size(121, 21);
@@ -675,8 +697,8 @@ namespace Cyfrowe
             this.CzestotliwoscInput.Name = "CzestotliwoscInput";
             this.CzestotliwoscInput.Size = new System.Drawing.Size(187, 20);
             this.CzestotliwoscInput.TabIndex = 2;
-            this.CzestotliwoscInput.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             this.CzestotliwoscInput.Text = "100";
+            this.CzestotliwoscInput.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // label12
             // 
@@ -726,6 +748,7 @@ namespace Cyfrowe
             this.TabController.Controls.Add(this.ObliczeniaTab);
             this.TabController.Controls.Add(this.ACTab);
             this.TabController.Controls.Add(this.CATab);
+            this.TabController.Controls.Add(this.FilterTab);
             this.TabController.Location = new System.Drawing.Point(2, 3);
             this.TabController.Name = "TabController";
             this.TabController.SelectedIndex = 0;
@@ -885,9 +908,9 @@ namespace Cyfrowe
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(6, 116);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(135, 13);
+            this.label14.Size = new System.Drawing.Size(107, 13);
             this.label14.TabIndex = 9;
-            this.label14.Text = "Częstotliwość próbkowania";
+            this.label14.Text = "Poziom kwantowania";
             this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // CzestotliwoscProbkowania2Input
@@ -934,8 +957,8 @@ namespace Cyfrowe
             this.SamplingFreqInput.Name = "SamplingFreqInput";
             this.SamplingFreqInput.Size = new System.Drawing.Size(92, 20);
             this.SamplingFreqInput.TabIndex = 4;
-            this.SamplingFreqInput.TextChanged += new System.EventHandler(this.SamplingFreqInput_TextChanged); 
             this.SamplingFreqInput.Text = "5";
+            this.SamplingFreqInput.TextChanged += new System.EventHandler(this.SamplingFreqInput_TextChanged);
             // 
             // CATab
             // 
@@ -1066,6 +1089,62 @@ namespace Cyfrowe
             this.CzestotliowscR1Input.Size = new System.Drawing.Size(92, 20);
             this.CzestotliowscR1Input.TabIndex = 10;
             // 
+            // FilterTab
+            // 
+            this.FilterTab.Controls.Add(this.label23);
+            this.FilterTab.Controls.Add(this.RzadOdcieciaInput);
+            this.FilterTab.Controls.Add(this.label21);
+            this.FilterTab.Controls.Add(this.CzestotliwoscProbkowaniaInput);
+            this.FilterTab.Controls.Add(this.label20);
+            this.FilterTab.Controls.Add(this.F0Input);
+            this.FilterTab.Controls.Add(this.FiltrButton);
+            this.FilterTab.Controls.Add(this.OknoSelector);
+            this.FilterTab.Controls.Add(this.FiltrSelector);
+            this.FilterTab.Location = new System.Drawing.Point(4, 22);
+            this.FilterTab.Name = "FilterTab";
+            this.FilterTab.Padding = new System.Windows.Forms.Padding(3);
+            this.FilterTab.Size = new System.Drawing.Size(252, 266);
+            this.FilterTab.TabIndex = 3;
+            this.FilterTab.Text = "Filtry";
+            this.FilterTab.UseVisualStyleBackColor = true;
+            // 
+            // FiltrButton
+            // 
+            this.FiltrButton.Location = new System.Drawing.Point(83, 143);
+            this.FiltrButton.Name = "FiltrButton";
+            this.FiltrButton.Size = new System.Drawing.Size(75, 23);
+            this.FiltrButton.TabIndex = 2;
+            this.FiltrButton.Text = "Filtruj";
+            this.FiltrButton.UseVisualStyleBackColor = true;
+            this.FiltrButton.Click += new System.EventHandler(this.FiltrButton_Click);
+            // 
+            // OknoSelector
+            // 
+            this.OknoSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OknoSelector.FormattingEnabled = true;
+            this.OknoSelector.Items.AddRange(new object[] {
+            "Okno prostokątne",
+            "Okno Hamminga",
+            "Okno Hanninga",
+            "Okno Blackmana"});
+            this.OknoSelector.Location = new System.Drawing.Point(7, 34);
+            this.OknoSelector.Name = "OknoSelector";
+            this.OknoSelector.Size = new System.Drawing.Size(239, 21);
+            this.OknoSelector.TabIndex = 1;
+            // 
+            // FiltrSelector
+            // 
+            this.FiltrSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FiltrSelector.FormattingEnabled = true;
+            this.FiltrSelector.Items.AddRange(new object[] {
+            "Filtr dolnoprzepustowy",
+            "Filtr środkowoprzepustowy",
+            "Filtr górnoprzepustowy"});
+            this.FiltrSelector.Location = new System.Drawing.Point(6, 6);
+            this.FiltrSelector.Name = "FiltrSelector";
+            this.FiltrSelector.Size = new System.Drawing.Size(240, 21);
+            this.FiltrSelector.TabIndex = 0;
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1090,6 +1169,60 @@ namespace Cyfrowe
             this.splitContainer2.Size = new System.Drawing.Size(617, 730);
             this.splitContainer2.SplitterDistance = 366;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // MROutput
+            // 
+            this.MROutput.AutoSize = true;
+            this.MROutput.Location = new System.Drawing.Point(408, 340);
+            this.MROutput.Name = "MROutput";
+            this.MROutput.Size = new System.Drawing.Size(13, 13);
+            this.MROutput.TabIndex = 6;
+            this.MROutput.Text = "0";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(369, 340);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(27, 13);
+            this.label24.TabIndex = 5;
+            this.label24.Text = "MR:";
+            // 
+            // SNROutput
+            // 
+            this.SNROutput.AutoSize = true;
+            this.SNROutput.Location = new System.Drawing.Point(319, 340);
+            this.SNROutput.Name = "SNROutput";
+            this.SNROutput.Size = new System.Drawing.Size(13, 13);
+            this.SNROutput.TabIndex = 4;
+            this.SNROutput.Text = "0";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(280, 340);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(33, 13);
+            this.label22.TabIndex = 3;
+            this.label22.Text = "SNR:";
+            // 
+            // MSEOutput
+            // 
+            this.MSEOutput.AutoSize = true;
+            this.MSEOutput.Location = new System.Drawing.Point(234, 340);
+            this.MSEOutput.Name = "MSEOutput";
+            this.MSEOutput.Size = new System.Drawing.Size(13, 13);
+            this.MSEOutput.TabIndex = 2;
+            this.MSEOutput.Text = "0";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(195, 340);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(33, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "MSE:";
             // 
             // Plot
             // 
@@ -1126,59 +1259,56 @@ namespace Cyfrowe
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // label19
+            // label20
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(195, 340);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(33, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "MSE:";
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 68);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(136, 13);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "Częstotliwość odcięcia filtru";
             // 
-            // MSEOutput
+            // F0Input
             // 
-            this.MSEOutput.AutoSize = true;
-            this.MSEOutput.Location = new System.Drawing.Point(234, 340);
-            this.MSEOutput.Name = "MSEOutput";
-            this.MSEOutput.Size = new System.Drawing.Size(13, 13);
-            this.MSEOutput.TabIndex = 2;
-            this.MSEOutput.Text = "0";
+            this.F0Input.Location = new System.Drawing.Point(148, 65);
+            this.F0Input.Name = "F0Input";
+            this.F0Input.Size = new System.Drawing.Size(98, 20);
+            this.F0Input.TabIndex = 4;
+            this.F0Input.Text = "100";
             // 
-            // SNROutput
+            // label21
             // 
-            this.SNROutput.AutoSize = true;
-            this.SNROutput.Location = new System.Drawing.Point(319, 340);
-            this.SNROutput.Name = "SNROutput";
-            this.SNROutput.Size = new System.Drawing.Size(13, 13);
-            this.SNROutput.TabIndex = 4;
-            this.SNROutput.Text = "0";
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 93);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(176, 13);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "Częstotliwość próbkowania sygnału";
             // 
-            // label22
+            // CzestotliwoscProbkowaniaInput
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(280, 340);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(33, 13);
-            this.label22.TabIndex = 3;
-            this.label22.Text = "SNR:";
+            this.CzestotliwoscProbkowaniaInput.Location = new System.Drawing.Point(188, 90);
+            this.CzestotliwoscProbkowaniaInput.Name = "CzestotliwoscProbkowaniaInput";
+            this.CzestotliwoscProbkowaniaInput.Size = new System.Drawing.Size(58, 20);
+            this.CzestotliwoscProbkowaniaInput.TabIndex = 6;
+            this.CzestotliwoscProbkowaniaInput.Text = "50";
             // 
-            // MROutput
+            // label23
             // 
-            this.MROutput.AutoSize = true;
-            this.MROutput.Location = new System.Drawing.Point(408, 340);
-            this.MROutput.Name = "MROutput";
-            this.MROutput.Size = new System.Drawing.Size(13, 13);
-            this.MROutput.TabIndex = 6;
-            this.MROutput.Text = "0";
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 120);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(75, 13);
+            this.label23.TabIndex = 7;
+            this.label23.Text = "Rząd odcięcia";
             // 
-            // label24
+            // RzadOdcieciaInput
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(369, 340);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(27, 13);
-            this.label24.TabIndex = 5;
-            this.label24.Text = "MR:";
+            this.RzadOdcieciaInput.Location = new System.Drawing.Point(83, 117);
+            this.RzadOdcieciaInput.Name = "RzadOdcieciaInput";
+            this.RzadOdcieciaInput.Size = new System.Drawing.Size(163, 20);
+            this.RzadOdcieciaInput.TabIndex = 8;
+            this.RzadOdcieciaInput.Text = "20";
             // 
             // CPS
             // 
@@ -1208,6 +1338,8 @@ namespace Cyfrowe
             this.ACTab.PerformLayout();
             this.CATab.ResumeLayout(false);
             this.CATab.PerformLayout();
+            this.FilterTab.ResumeLayout(false);
+            this.FilterTab.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -1318,6 +1450,17 @@ namespace Cyfrowe
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label MSEOutput;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ToolStripMenuItem exportujPróbkowanyToolStripMenuItem;
+        private System.Windows.Forms.TabPage FilterTab;
+        private System.Windows.Forms.Button FiltrButton;
+        private System.Windows.Forms.ComboBox OknoSelector;
+        private System.Windows.Forms.ComboBox FiltrSelector;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox RzadOdcieciaInput;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox CzestotliwoscProbkowaniaInput;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox F0Input;
     }
 }
 

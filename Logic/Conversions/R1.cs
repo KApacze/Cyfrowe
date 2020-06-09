@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Cyfrowe.Logic.Conversions
 {
     public class R1
@@ -12,6 +11,7 @@ namespace Cyfrowe.Logic.Conversions
         {
             Signal newSignal = (Signal) signal.CreateShallowCopy();
             newSignal.CzestotliwoscProbkowania = frequency;
+          //  newSignal = Cyfrowe.Logic.Conversions.S1.ProbkowanieRownomierne(newSignal, frequency);
             List<Point> points = new List<Point>();
             double step = 1 / frequency;
             double baseSignalStep = newSignal.PointList[1].X - newSignal.PointList[0].X;

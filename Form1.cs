@@ -1,4 +1,5 @@
 ﻿using Cyfrowe.Logic;
+using Cyfrowe.Logic.Operations;
 using Cyfrowe.Logic.Signals;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,6 @@ using Point = Cyfrowe.Logic.Point;
 
 namespace Cyfrowe
 {
-    
     public partial class CPS : Form
     {
         private List<Signal> AllSignals =
@@ -38,6 +38,8 @@ namespace Cyfrowe
         private Signal SecondarySignal;
         private Signal SampledSignal;
         private Signal ReconstructedSignal;
+        private Signal FilteredSignal;
+
         public CPS()
         {
             InitializeComponent();
@@ -306,6 +308,15 @@ namespace Cyfrowe
 
         private void exportujToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            export(CurrentSignal);
+        }
+        private void exportujPróbkowanyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            export(SampledSignal);
+        }
+
+        private void export(Signal signal)
+        {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             saveFileDialog1.Title = "Save an signal";
@@ -321,7 +332,7 @@ namespace Cyfrowe
                 {
                     String path = saveFileDialog1.FileName;
                     StreamWriter sw = new StreamWriter(path);
-                    saveSignal(sw, CurrentSignal);
+                    saveSignal(sw, signal);
                     sw.Close();
 
 
@@ -332,7 +343,6 @@ namespace Cyfrowe
                 }
             }
         }
-
         private void importujToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = import();          
@@ -459,10 +469,15 @@ namespace Cyfrowe
                     signal = Logic.Operations.Multiply.Mnoz(CurrentSignal,
                                                   SecondarySignal);
                 }
-                else
+                else if(OperacjeSelect.SelectedIndex == 3)
                 {
                     signal = Logic.Operations.Divide.Dziel(CurrentSignal,
                                                   SecondarySignal);
+                } 
+                else
+                {
+                    
+                     signal = Logic.Operations.Weave.Splot(SampledSignal, SecondarySignal);
                 }
 
 
@@ -516,7 +531,7 @@ namespace Cyfrowe
             double f = Double.Parse(this.CzestotliwoscProbkowania2Input.Text);
             Signal signal = Logic.Conversions.Q2.KwantyzacjaRownomierna(CurrentSignal, f);
             AddACToPlot(signal);
-            Plot.Series[1].ChartType = SeriesChartType.Line;
+            //Plot.Series[1].ChartType = SeriesChartType.Line;
         }
 
         private void TabController_SelectedIndexChanged(object sender, EventArgs e)
@@ -545,11 +560,12 @@ namespace Cyfrowe
         }
         private void AddCAToPlot(Signal signal)
         {
-            if (Plot.Series.Count > 2) Plot.Series.RemoveAt(2);
+            if (Plot.Series.Count > 1) Plot.Series.RemoveAt(1);
             Series series = this.Plot.Series.Add("C/A");
             series.ChartType = SeriesChartType.Line;
             foreach (Point point in signal.PointList)
                 series.Points.AddXY(point.X, point.Y);
+            Plot.Series[1].Color = Color.Red;
 
             ReconstructedSignal = signal;
 
@@ -578,6 +594,58 @@ namespace Cyfrowe
             this.MSEOutput.Text = Logic.Conversions.Measures.CalculateMSE(originalSignal,newSignal,frequency).ToString() ;
             this.SNROutput.Text = Logic.Conversions.Measures.CalculateSNR(originalSignal, newSignal, frequency).ToString();
             this.MROutput.Text = Logic.Conversions.Measures.CalculateMD(originalSignal, newSignal, frequency).ToString();
+        }
+
+        private void plikToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FiltrButton_Click(object sender, EventArgs e)
+        {
+            Signal signal = (Signal)CurrentSignal.CreateShallowCopy();
+            int M =  Int16.Parse(this.RzadOdcieciaInput.Text);
+            double fo = Double.Parse(this.F0Input.Text);
+            double fp = Double.Parse(this.CzestotliwoscProbkowaniaInput.Text);
+            double K;
+            List<double> filterValues = new List<double>();
+            if (this.FiltrSelector.SelectedIndex == 0)
+            {
+                filterValues = Filters.LowFilter(M, fo, fp);
+            } else if(this.FiltrSelector.SelectedIndex == 1)
+            {
+                K = fp / (fp / 4 - fo);
+                filterValues = Filters.LowFilter(M, fo, fp, K);
+                filterValues = Filters.MediumFilter(filterValues);
+            } else if(this.FiltrSelector.SelectedIndex == 2)
+            {
+                filterValues = Filters.LowFilter(M, fo, fp, fp / (fp / 2 - fo));
+
+                filterValues = Filters.HighFilter(filterValues);
+            }
+
+            if(this.OknoSelector.SelectedIndex == 0)
+            {
+                filterValues = Filters.RectangularWindow(filterValues);
+            } else if(this.OknoSelector.SelectedIndex == 1)
+            {
+                filterValues = Filters.HammingWindow(filterValues);
+            } else if (this.OknoSelector.SelectedIndex == 2)
+            {
+                filterValues = Filters.HanningWindow(filterValues);
+            } else if(this.OknoSelector.SelectedIndex == 3)
+            {
+                filterValues = Filters.BlackmanWindow(filterValues);
+            }
+
+
+            signal = Weave.Splot(CurrentSignal, filterValues);
+            drawPlot(signal);
+            FilteredSignal = signal;
+            Plot.Titles[0].Text = "Filtrowanie";
+            Plot.Series[0].ChartType = SeriesChartType.Point;
+
+
         }
     }
         
