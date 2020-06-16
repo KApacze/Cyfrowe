@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +61,7 @@
     <Compile Include="Logic\Conversions\R3.cs" />
     <Compile Include="Logic\Conversions\S1.cs" />
     <Compile Include="Logic\Operations\Add.cs" />
+    <Compile Include="Logic\Operations\Correlation.cs" />
     <Compile Include="Logic\Operations\Divide.cs" />
     <Compile Include="Logic\Operations\Filters.cs" />
     <Compile Include="Logic\Operations\Multiply.cs" />
@@ -79,6 +81,10 @@
     <Compile Include="Logic\Signals\S7.cs" />
     <Compile Include="Logic\Signals\S8.cs" />
     <Compile Include="Logic\Signals\S9.cs" />
+    <Compile Include="Logic\Transformation\CWT.cs" />
+    <Compile Include="Logic\Transformation\DFT.cs" />
+    <Compile Include="Logic\Transformation\FFT.cs" />
+    <Compile Include="Logic\Transformation\Methods.cs" />
     <Compile Include="Logic\Types.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

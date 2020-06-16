@@ -17,4 +17,22 @@ namespace Cyfrowe.Logic
             Y = y;
         }
     }
+
+    //public class Complex
+    //{
+    //    public double realY;
+    //    public double notrealY;
+
+    //    public Complex(Point real, double notreal)
+    //    {
+    //        this.realY = real.Y;
+    //        this.notrealY = notreal;
+    //    }
+    //    public Complex(double real, double notreal)
+    //    {
+    //        this.realY = real;
+    //        this.notrealY = notreal;
+    //    }
+    //}
 }
+

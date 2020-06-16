@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Cyfrowe.Logic
 {
-   
+
     public abstract class Signal
     {
         public string Nazwa { get; set; }
@@ -28,7 +28,8 @@ namespace Cyfrowe.Logic
         public Types Rodzaj;
 
         public List<Point> PointList { get; set; }
-
+        public List<Complex> ComplexPointList { get; set; }
+        public bool IsComplex { get; set; } = false;
 
         public bool CzyAmplituda { get; set; }
         public bool CzyCzestotliwosc { get; set; }

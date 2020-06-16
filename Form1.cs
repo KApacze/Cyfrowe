@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +40,7 @@ namespace Cyfrowe
         private Signal SampledSignal;
         private Signal ReconstructedSignal;
         private Signal FilteredSignal;
+        private Signal TransformedSignal;
 
         public CPS()
         {
@@ -143,15 +145,6 @@ namespace Cyfrowe
 
         }
 
-        private void Plot_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        { 
-
-        }
 
         private void drawPlot(Signal signal)
         {
@@ -186,7 +179,7 @@ namespace Cyfrowe
 
 
 
-                if (size == null) size = 5;
+                if (size == 0) size = 5;
                 int[] values = new int[size];
                 double[] value = new double[size];
                 double min = signal.PointList.Min(r => r.Y);
@@ -448,7 +441,7 @@ namespace Cyfrowe
         {
  
         }
-
+        #region operations
         private void ObliczButton_Click(object sender, EventArgs e)
         {
             if(CurrentSignal != null && SecondarySignal != null)
@@ -474,12 +467,19 @@ namespace Cyfrowe
                     signal = Logic.Operations.Divide.Dziel(CurrentSignal,
                                                   SecondarySignal);
                 } 
-                else
+                else if (OperacjeSelect.SelectedIndex == 4)
                 {
                     
                      signal = Logic.Operations.Weave.Splot(SampledSignal, SecondarySignal);
                 }
+                else if (OperacjeSelect.SelectedIndex == 5)
+                {
 
+                    signal = Correlation.Korelacja(SampledSignal, SecondarySignal);
+                } else
+                {
+                    signal = Correlation.KorelacjaZUzyciemSplotu(SampledSignal, SecondarySignal);
+                }
 
                 drawPlot(signal);
                 drawHistogram(signal);
@@ -489,15 +489,6 @@ namespace Cyfrowe
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void SamplingButton_Click(object sender, EventArgs e)
         {
@@ -506,7 +497,7 @@ namespace Cyfrowe
             AddACToPlot(signal);
  
         }
-
+           
         private void AddACToPlot(Signal signal)
         {
             if (Plot.Series.Count > 1) Plot.Series.RemoveAt(1);
@@ -521,10 +512,6 @@ namespace Cyfrowe
 
         }
 
-        private void textBox11_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void AC2Button_Click(object sender, EventArgs e)
         {
@@ -534,20 +521,6 @@ namespace Cyfrowe
             //Plot.Series[1].ChartType = SeriesChartType.Line;
         }
 
-        private void TabController_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SamplingFreq_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SamplingFreqInput_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void R1Button_Click(object sender, EventArgs e)
         {
@@ -595,12 +568,10 @@ namespace Cyfrowe
             this.SNROutput.Text = Logic.Conversions.Measures.CalculateSNR(originalSignal, newSignal, frequency).ToString();
             this.MROutput.Text = Logic.Conversions.Measures.CalculateMD(originalSignal, newSignal, frequency).ToString();
         }
+        #endregion
 
-        private void plikToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
-
+        #region filtrowanie
         private void FiltrButton_Click(object sender, EventArgs e)
         {
             Signal signal = (Signal)CurrentSignal.CreateShallowCopy();
@@ -647,6 +618,56 @@ namespace Cyfrowe
 
 
         }
+        #endregion
+
+
+
+        private void TransformationButton_Click(object sender, EventArgs e)
+        {
+            Signal signal = (Signal)CurrentSignal.CreateShallowCopy();
+            while((CurrentSignal.PointList.Count & (CurrentSignal.PointList.Count - 1)) != 0)
+            {
+                signal.PointList.RemoveAt(signal.PointList.Count - 1);
+            }
+            TransformedSignal = Logic.Transformation.CWT.ContinuousWaveletTransformation(signal);
+            DrawW1(TransformedSignal);
+        }
+
+
+        public void DrawW1(Signal signal)
+        {
+            this.W1Plot1.Series.Clear();
+            this.W1Plot2.Series.Clear();
+            this.W1Plot1.Titles.Clear();
+            this.W1Plot2.Titles.Clear();
+
+            this.W1Plot1.Titles.Add("Część rzeczywista sygnału");
+            this.W1Plot2.Titles.Add("Część urojona sygnału");
+
+            Series series1 = this.W1Plot1.Series.Add(signal.Nazwa);
+            series1.ChartType = SeriesChartType.Point;
+            Series series2 = this.W1Plot2.Series.Add(signal.Nazwa);
+            series2.ChartType = SeriesChartType.Point;
+
+            for(int i =0; i != signal.ComplexPointList.Count; i++)
+            {
+                series1.Points.AddXY(signal.PointList[i].X, signal.ComplexPointList[i].Real);
+                series2.Points.AddXY(signal.PointList[i].X, signal.ComplexPointList[i].Imaginary);
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Signal signal = (Signal)TransformedSignal.CreateShallowCopy();
+            while ((signal.PointList.Count & (signal.PointList.Count - 1)) != 0)
+            {
+                signal.PointList.RemoveAt(signal.PointList.Count - 1);
+            }
+            signal = Logic.Transformation.CWT.ContinuousWaveletTransformation(signal);
+            drawPlot(signal);
+            Plot.Series[0].ChartType = SeriesChartType.Point;
+            }
     }
         
 }
